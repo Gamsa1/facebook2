@@ -11,6 +11,7 @@ class MessengerPage(models.Model):
     page_access_token = fields.Char(string='Page Access Token', required=True)
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        ('page_id_unique', 'unique(page_id)', 'This Facebook Page ID is already configured.'),
-    ]
+    _page_id_unique = models.Constraint(
+        'unique(page_id)',
+        'This Facebook Page ID is already configured.',
+    )
