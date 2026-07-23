@@ -1,30 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="messenger_crm_config_settings_view" model="ir.ui.view">
-        <field name="name">res.config.settings.view.messenger.crm</field>
-        <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+    <record id="view_messenger_page_list" model="ir.ui.view">
+        <field name="name">messenger.page.list</field>
+        <field name="model">messenger.page</field>
         <field name="arch" type="xml">
-            <xpath expr="//form" position="inside">
-                <app string="Social Inbox" name="messenger_crm_lead" groups="base.group_system">
-                    <block title="Facebook Messenger &amp; Instagram DM" name="messenger_settings_block">
-                        <setting string="Webhook Verify Token"
-                                 help="A secret string you set here AND in Meta Developer Console to verify the webhook URL.">
-                            <field name="messenger_verify_token" placeholder="e.g. my_secret_token_123"/>
-                        </setting>
-                        <setting string="Auto-create Lead"
-                                 help="When ON, every new incoming message automatically becomes a CRM Lead. When OFF, you convert manually with 1 click.">
-                            <field name="messenger_auto_lead"/>
-                        </setting>
-                        <setting string="Webhook URL" help="Copy this URL and paste it in Meta Developer Console → Webhooks.">
-                            <div class="o_setting_box_content">
-                                <code>/messenger/webhook</code>
-                                <span class="text-muted ms-2">(prefix with your Odoo domain)</span>
-                            </div>
-                        </setting>
-                    </block>
-                </app>
-            </xpath>
+            <list string="Messenger Pages">
+                <field name="name"/>
+                <field name="page_id"/>
+                <field name="active"/>
+            </list>
         </field>
+    </record>
+
+    <record id="view_messenger_page_form" model="ir.ui.view">
+        <field name="name">messenger.page.form</field>
+        <field name="model">messenger.page</field>
+        <field name="arch" type="xml">
+            <form string="Messenger Page">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="page_id"/>
+                        <field name="page_access_token" password="True"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_messenger_page" model="ir.actions.act_window">
+        <field name="name">Messenger Pages</field>
+        <field name="res_model">messenger.page</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
