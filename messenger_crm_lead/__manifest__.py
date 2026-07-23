@@ -15,11 +15,12 @@
     'website': '',
     'depends': ['crm', 'mail'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/messenger_message_views.xml',
-        'views/res_config_settings_views.xml',
-        'views/menu.xml',
-    ],
+    'security/ir.model.access.csv',
+    'views/messenger_message_views.xml',
+    'views/messenger_page_views.xml',   # ← add this line
+    'views/res_config_settings_views.xml',
+    'views/menu.xml',
+],
     'images': ['static/description/icon.png'],
     'installable': True,
     'auto_install': False,

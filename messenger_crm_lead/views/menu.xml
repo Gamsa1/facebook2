@@ -11,4 +11,10 @@
               parent="menu_messenger_root"
               action="messenger_message_action"
               sequence="10"/>
+
+    <menuitem id="menu_messenger_pages"
+              name="Messenger Pages"
+              parent="menu_messenger_root"
+              action="action_messenger_page"
+              sequence="20"/>
 </odoo>

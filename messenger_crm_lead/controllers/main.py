@@ -15,10 +15,6 @@ class MessengerWebhook(http.Controller):
     @http.route('/messenger/webhook', type='http', auth='public',
                 methods=['GET'], csrf=False)
     def verify_webhook(self, **kwargs):
-        """
-        Meta calls this URL with a GET request to verify the webhook.
-        We echo back hub.challenge if the verify_token matches.
-        """
         ICP = request.env['ir.config_parameter'].sudo()
         verify_token = ICP.get_param('messenger_crm_lead.verify_token', '')
 
@@ -40,21 +36,14 @@ class MessengerWebhook(http.Controller):
     @http.route('/messenger/webhook', type='http', auth='public',
                 methods=['POST'], csrf=False)
     def receive_message(self, **kwargs):
-        """
-        Meta sends all incoming Messenger & Instagram DM messages here as POST.
-        We parse the payload and store (optionally auto-convert to Lead).
-        """
         try:
             data = json.loads(request.httprequest.data)
             _logger.info('Messenger webhook payload: %s', data)
 
             obj = data.get('object', '')
 
-            # Facebook Messenger
             if obj == 'page':
                 self._process_entries(data.get('entry', []), source='messenger')
-
-            # Instagram DM
             elif obj == 'instagram':
                 self._process_entries(data.get('entry', []), source='instagram')
 
@@ -72,42 +61,44 @@ class MessengerWebhook(http.Controller):
         env = request.env(su=True)
         ICP = env['ir.config_parameter']
         auto_lead = str(ICP.get_param('messenger_crm_lead.auto_lead', 'False')).lower() in ('1', 'true', 'yes')
-        page_token = ICP.get_param('messenger_crm_lead.page_access_token', '')
 
         for entry in entries:
+            fb_page_id = entry.get('id', '')
+            page_record = env['messenger.page'].search([('page_id', '=', fb_page_id)], limit=1)
+
+            if not page_record:
+                _logger.warning('Received message for unconfigured Page ID: %s', fb_page_id)
+                continue  # skip entries from Pages we haven't set up
+
+            page_token = page_record.page_access_token
+
             for messaging in entry.get('messaging', []):
                 sender_psid = messaging.get('sender', {}).get('id', '')
                 message_obj = messaging.get('message', {})
                 text = message_obj.get('text', '')
 
                 if not text:
-                    continue  # skip non-text (stickers, reactions, etc.)
+                    continue
 
-                # Try to fetch sender name from Graph API
                 sender_name = self._get_sender_name(sender_psid, page_token, source)
 
-                # Save to messenger.message
                 msg = env['messenger.message'].create({
                     'source': source,
                     'sender_id': sender_psid,
                     'sender_name': sender_name,
                     'message_text': text,
                     'state': 'new',
+                    'messenger_page_id': page_record.id,
                 })
 
-                # Auto-create lead if setting is on
                 if auto_lead:
                     msg.action_convert_to_lead()
 
     def _get_sender_name(self, psid, page_token, source):
-        """Call Meta Graph API to get the sender's display name."""
         if not page_token or not psid:
             return psid or 'Unknown'
         try:
-            if source == 'messenger':
-                url = f'https://graph.facebook.com/v19.0/{psid}'
-            else:
-                url = f'https://graph.facebook.com/v19.0/{psid}'
+            url = f'https://graph.facebook.com/v19.0/{psid}'
             resp = requests.get(url, params={
                 'fields': 'name',
                 'access_token': page_token,

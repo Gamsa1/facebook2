@@ -12,10 +12,6 @@
                                  help="A secret string you set here AND in Meta Developer Console to verify the webhook URL.">
                             <field name="messenger_verify_token" placeholder="e.g. my_secret_token_123"/>
                         </setting>
-                        <setting string="Page Access Token"
-                                 help="Your Facebook Page Access Token from Meta Developer Console. Used to fetch the sender's name.">
-
-                        </setting>
                         <setting string="Auto-create Lead"
                                  help="When ON, every new incoming message automatically becomes a CRM Lead. When OFF, you convert manually with 1 click.">
                             <field name="messenger_auto_lead"/>

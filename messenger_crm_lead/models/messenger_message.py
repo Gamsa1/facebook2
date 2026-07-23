@@ -34,7 +34,7 @@ class MessengerMessage(models.Model):
         ('converted', 'Converted to Lead'),
         ('ignored', 'Ignored'),
     ], string='Status', default='new', required=True)
-
+    messenger_page_id = fields.Many2one('messenger.page', string='Page', readonly=True)
     # ── Actions ───────────────────────────────────────────────────────────────
 
     def action_convert_to_lead(self):
