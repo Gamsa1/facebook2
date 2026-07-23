@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root menu under CRM -->
+    <menuitem id="menu_messenger_root"
+              name="Social Inbox"
+              parent="crm.crm_menu_root"
+              sequence="20"/>
+
+    <menuitem id="menu_messenger_messages"
+              name="Messenger &amp; Instagram"
+              parent="menu_messenger_root"
+              action="messenger_message_action"
+              sequence="10"/>
+</odoo>

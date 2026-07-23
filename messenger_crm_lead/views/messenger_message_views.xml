@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List View ─────────────────────────────────────────────────────── -->
+    <record id="messenger_message_view_list" model="ir.ui.view">
+        <field name="name">messenger.message.view.list</field>
+        <field name="model">messenger.message</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="received_at"/>
+                <field name="source"/>
+                <field name="sender_name"/>
+                <field name="message_text"/>
+                <field name="state"/>
+                <field name="lead_id"/>
+                <button name="action_convert_to_lead"
+                        string="Convert to Lead"
+                        type="object"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form View ─────────────────────────────────────────────────────── -->
+    <record id="messenger_message_view_form" model="ir.ui.view">
+        <field name="name">messenger.message.view.form</field>
+        <field name="model">messenger.message</field>
+        <field name="arch" type="xml">
+            <form string="Incoming Message">
+                <header>
+                    <button name="action_convert_to_lead"
+                            string="Convert to Lead"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'new'"/>
+                    <button name="action_ignore"
+                            string="Ignore"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state != 'new'"/>
+                    <button name="action_reset"
+                            string="Reset to New"
+                            type="object"
+                            invisible="state == 'new'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="new,converted,ignored"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sender_name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Sender Info">
+                            <field name="source"/>
+                            <field name="sender_id"/>
+                            <field name="received_at"/>
+                        </group>
+                        <group string="CRM">
+                            <field name="lead_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message">
+                            <field name="message_text" readonly="1"
+                                   widget="text" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Search View ───────────────────────────────────────────────────── -->
+    <record id="messenger_message_view_search" model="ir.ui.view">
+        <field name="name">messenger.message.view.search</field>
+        <field name="model">messenger.message</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sender_name"/>
+                <field name="message_text"/>
+                <filter string="New" name="new" domain="[('state','=','new')]"/>
+                <filter string="Converted" name="converted" domain="[('state','=','converted')]"/>
+                <filter string="Ignored" name="ignored" domain="[('state','=','ignored')]"/>
+                <separator/>
+                <filter string="Facebook Messenger" name="messenger" domain="[('source','=','messenger')]"/>
+                <filter string="Instagram DM" name="instagram" domain="[('source','=','instagram')]"/>
+                <filter string="Source" name="group_source" context="{'group_by':'source'}"/>
+                <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
+                <filter string="Date" name="group_date" context="{'group_by':'received_at:day'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ── Action ────────────────────────────────────────────────────────── -->
+    <record id="messenger_message_action" model="ir.actions.act_window">
+        <field name="name">Social Inbox</field>
+        <field name="res_model">messenger.message</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="messenger_message_view_search"/>
+        <field name="context">{'search_default_new': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No messages yet!
+            </p>
+            <p>
+                When someone sends you a message on Facebook Messenger or Instagram,
+                it will appear here. Click <strong>Convert to Lead</strong> to add it to CRM.
+            </p>
+        </field>
+    </record>
+
+    <!-- ── Server action for batch convert ───────────────────────────────── -->
+    <record id="messenger_action_convert_batch" model="ir.actions.server">
+        <field name="name">Convert to Lead</field>
+        <field name="model_id" ref="messenger_crm_lead.model_messenger_message"/>
+        <field name="binding_model_id" ref="messenger_crm_lead.model_messenger_message"/>
+        <field name="state">code</field>
+        <field name="code">records.action_convert_all_to_leads()</field>
+    </record>
+
+</odoo>

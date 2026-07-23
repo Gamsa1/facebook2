@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_messenger_message_user,messenger.message.user,messenger_crm_lead.model_messenger_message,base.group_user,1,1,1,0
+access_messenger_message_manager,messenger.message.manager,messenger_crm_lead.model_messenger_message,base.group_system,1,1,1,1
