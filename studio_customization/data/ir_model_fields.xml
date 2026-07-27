@@ -529,6 +529,15 @@
     <field name="name">x_studio_product_file_filename</field>
     <field name="on_delete" eval="False"/>
   </record>
+  <record id="new_many2one_lead_bea1f33c-a5c6-47f4-bde7-86f7b92c7fe8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Gel</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_many2one_field_79q_1jqlen4su</field>
+    <field name="relation">res.currency</field>
+  </record>
   <record id="new_monetary_lead_d46992aa-c4d0-41a2-831d-380e06284e70" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">monetary</field>
     <field name="copied" eval="True"/>
@@ -548,13 +557,13 @@
     <field name="name">x_studio_many2one_field_9nc_1jqlel4hr</field>
     <field name="relation">crm.lead</field>
   </record>
-  <record id="new_many2one_lead_bea1f33c-a5c6-47f4-bde7-86f7b92c7fe8" model="ir.model.fields" context="{'studio': True}">
+  <record id="new_many2one_lead_9264b775-a60b-40c0-969d-b1a74b67d1dd" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">many2one</field>
     <field name="copied" eval="True"/>
-    <field name="field_description">Gel</field>
+    <field name="field_description">yuan</field>
     <field name="model">crm.lead</field>
     <field name="model_id" ref="crm.model_crm_lead"/>
-    <field name="name">x_studio_many2one_field_79q_1jqlen4su</field>
+    <field name="name">x_studio_yuan</field>
     <field name="relation">res.currency</field>
   </record>
   <record id="new_monetary_lead_db69037f-5d3d-4f6e-abe0-53793fa63495" model="ir.model.fields" context="{'studio': True}">
@@ -566,15 +575,6 @@
     <field name="name">x_studio_monetary_field_713_1jqleqatd</field>
     <field name="on_delete" eval="False"/>
     <field name="currency_field">x_studio_yuan</field>
-  </record>
-  <record id="new_many2one_lead_9264b775-a60b-40c0-969d-b1a74b67d1dd" model="ir.model.fields" context="{'studio': True}">
-    <field name="ttype">many2one</field>
-    <field name="copied" eval="True"/>
-    <field name="field_description">yuan</field>
-    <field name="model">crm.lead</field>
-    <field name="model_id" ref="crm.model_crm_lead"/>
-    <field name="name">x_studio_yuan</field>
-    <field name="relation">res.currency</field>
   </record>
   <record id="new_monetary_lead_f57faa88-ba2c-408e-8da5-919e642cf274" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">monetary</field>
@@ -606,6 +606,15 @@
     <field name="on_delete" eval="False"/>
     <field name="currency_field">currency_id</field>
   </record>
+  <record id="new_many2one_contact_f0e5037b-6f43-42d9-aba4-872e81cda3ec" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Gel</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_gel</field>
+    <field name="relation">res.currency</field>
+  </record>
   <record id="new_monetary_contact_2be4c58a-564b-4a3a-a0f4-5bce5c06c8b1" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">monetary</field>
     <field name="copied" eval="True"/>
@@ -616,6 +625,15 @@
     <field name="on_delete" eval="False"/>
     <field name="currency_field">x_studio_gel</field>
   </record>
+  <record id="new_many2one_contact_f38ae210-4aac-4498-bfe6-ae52a68a3da8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Yuan</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_yuan</field>
+    <field name="relation">res.currency</field>
+  </record>
   <record id="new_monetary_contact_b8f3b806-f738-4a9b-97d7-b0c6b7b58791" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">monetary</field>
     <field name="copied" eval="True"/>
@@ -625,24 +643,6 @@
     <field name="name">x_studio_monetary_field_4j3_1jqlgp1lv</field>
     <field name="on_delete" eval="False"/>
     <field name="currency_field">x_studio_yuan</field>
-  </record>
-  <record id="new_many2one_contact_f0e5037b-6f43-42d9-aba4-872e81cda3ec" model="ir.model.fields" context="{'studio': True}">
-    <field name="ttype">many2one</field>
-    <field name="copied" eval="True"/>
-    <field name="field_description">Gel</field>
-    <field name="model">res.partner</field>
-    <field name="model_id" ref="base.model_res_partner"/>
-    <field name="name">x_studio_gel</field>
-    <field name="relation">res.currency</field>
-  </record>
-  <record id="new_many2one_contact_f38ae210-4aac-4498-bfe6-ae52a68a3da8" model="ir.model.fields" context="{'studio': True}">
-    <field name="ttype">many2one</field>
-    <field name="copied" eval="True"/>
-    <field name="field_description">Yuan</field>
-    <field name="model">res.partner</field>
-    <field name="model_id" ref="base.model_res_partner"/>
-    <field name="name">x_studio_yuan</field>
-    <field name="relation">res.currency</field>
   </record>
   <record id="new_text_sales_order_db938061-1019-45d6-b745-821e146fd92c" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">char</field>
