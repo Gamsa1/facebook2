@@ -661,14 +661,6 @@
         <xpath expr="/form/sheet/group/group/span[@name='address_name']/field[@name='type_address_label']" position="attributes">
           <attribute name="string">მისამართი</attribute>
         </xpath>
-        <xpath expr="/form//field[@name='category_id']" position="after">
-          <field name="x_studio_monetary_field_e1_1jqlgm2sr" string="შესყივდვის ფასი - $"/>
-          <field name="currency_id"/>
-          <field name="x_studio_monetary_field_909_1jqlgo9rf" string="შესყიდვის ფასი - ₾"/>
-          <field name="x_studio_monetary_field_4j3_1jqlgp1lv" string="შესყიდვის ფასი - ¥"/>
-          <field name="x_studio_gel" invisible="True"/>
-          <field name="x_studio_yuan" invisible="True"/>
-        </xpath>
         <xpath expr="/form//field[@name='website']" position="attributes">
           <attribute name="string">ვებსაიტი</attribute>
         </xpath>
