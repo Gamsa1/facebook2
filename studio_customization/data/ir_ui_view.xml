@@ -658,9 +658,6 @@
             </group>
           </group>
         </xpath>
-        <xpath expr="/form//div[@id='vat_div']" position="after">
-          <field name="x_studio_id_number" string="პირადი ნომერი"/>
-        </xpath>
         <xpath expr="/form/sheet/group/group/span[@name='address_name']/field[@name='type_address_label']" position="attributes">
           <attribute name="string">მისამართი</attribute>
         </xpath>
