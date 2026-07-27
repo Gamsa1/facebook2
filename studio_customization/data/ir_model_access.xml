@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="1_group_system_970f1086-6d42-4b71-8a79-932359059ae0" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="1_080e10af-9be4-4103-b32d-edbc6bee5a99"/>
+    <field name="name">1 group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="1_group_user_9f0afeb1-250e-4d76-a671-db95d19de035" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="1_080e10af-9be4-4103-b32d-edbc6bee5a99"/>
+    <field name="name">1 group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="brand_group_system_878d9d0f-e41e-4d0f-bf89-9c3a732e2050" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">Brand group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="brand_group_user_c29c1dec-a041-4cf8-b295-ad223391763e" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">Brand group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="crm_lead_line_group__be9cd98f-4f72-46da-85fd-0a8eaa31a810" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="crm_lead_line_df90133d-dc44-49fe-b233-fd9101270ff4"/>
+    <field name="name">crm_lead_line group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="crm_lead_line_group__5f95498c-7db1-4ef2-9658-1b97e1e9f11b" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="crm_lead_line_df90133d-dc44-49fe-b233-fd9101270ff4"/>
+    <field name="name">crm_lead_line group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="res_partner_line_gro_448a069b-ea4a-4fdf-8f22-fddad1a8980e" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="res_partner_line_454393f4-db59-4402-9198-8ec6473da85a"/>
+    <field name="name">res_partner_line group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="res_partner_line_gro_6b0c03b1-ca92-48f2-b4f3-cac067df4cee" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="res_partner_line_454393f4-db59-4402-9198-8ec6473da85a"/>
+    <field name="name">res_partner_line group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+</odoo>

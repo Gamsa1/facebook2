@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="execute_code_e1bfa5ca-f2ab-4c2d-b051-84e6e382147a" model="ir.actions.server" context="{'studio': True}">
+    <field name="code"><![CDATA[for lead in records:
+    if not lead.email_normalized and not lead.phone_sanitized:
+        continue  # nothing to match on
+
+    # match on email OR phone
+    criteria = []
+    if lead.email_normalized:
+        criteria.append(('email_normalized', '=', lead.email_normalized))
+    if lead.phone_sanitized:
+        criteria.append(('phone_sanitized', '=', lead.phone_sanitized))
+    or_part = criteria if len(criteria) == 1 else ['|'] + criteria
+
+    # the EARLIEST matching lead is the original
+    original = env['crm.lead'].search(
+        [('type', '=', 'lead')] + or_part,
+        order='create_date asc, id asc', limit=1,
+    )
+
+    # if the earliest match is this lead itself -> it's an original, stop
+    if not original or original.id == lead.id:
+        continue
+
+    # never link to a duplicate: if the match is one, jump to its original
+    if original.x_studio_duplicate and original.x_studio_original_lead:
+        original = original.x_studio_original_lead
+
+    lead.write({
+        'x_studio_duplicate': True,
+        'x_studio_original_lead': original.id,
+    })]]></field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="state">code</field>
+    <field name="name">Execute Code</field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="execute_code_2314b3d4-3aa5-450d-8319-8f9b65a0a062" model="ir.actions.server" context="{'studio': True}">
+    <field name="code"><![CDATA[# Dual-contact lead-to-contact sync
+# CORRECTED: Odoo's partner_id on the lead is the INDIVIDUAL, not the company
+# The company is the parent of the individual (when partner_name is set on lead)
+
+for record in records:
+    if not record.partner_id:
+        continue
+    
+    individual = record.partner_id      # Odoo returns the individual partner
+    company = individual.parent_id      # Company is the parent (if it exists)
+    
+    # Build tags and history (used in both branches)
+    lead_tag_ids = []
+    for tag in record.tag_ids:
+        category = env['res.partner.category'].search(
+            [('name', '=', tag.name)], limit=1
+        )
+        if category:
+            lead_tag_ids.append(category.id)
+    
+    history_lines = []
+    for line in record.x_studio_one2many_field_7vm_1jq3nh96u:
+        history_lines.append((0, 0, {
+            'x_name':            line.x_name,
+            'x_studio_sequence': line.x_studio_sequence,
+        }))
+    
+    # Monetary amounts + their currencies — copy BOTH so the value stores.
+    # Names from Studio's panel may carry a spurious "_0"; resolve to the real
+    # DB field name (try as-is, else strip a trailing "_0").
+    monetary_map = [
+        ('x_studio_monetary_field_4k3_1jovmptgs_0', 'x_studio_monetary_field_e1_1jqlgm2sr'),
+        ('x_studio_monetary_field_3t0_1jqlekjgu_0', 'x_studio_monetary_field_909_1jqlgo9rf_0'),
+        ('x_studio_monetary_field_713_1jqleqatd_0', 'x_studio_monetary_field_4j3_1jqlgp1lv'),
+    ]
+    lead_fields = record._fields
+    partner_fields = env['res.partner']._fields
+    mon_vals = {}
+    for src, dst in monetary_map:
+        src_real = src if src in lead_fields else (
+            src[:-2] if src.endswith('_0') and src[:-2] in lead_fields else src)
+        dst_real = dst if dst in partner_fields else (
+            dst[:-2] if dst.endswith('_0') and dst[:-2] in partner_fields else dst)
+        mon_vals[dst_real] = record[src_real]
+        dst_cur = partner_fields[dst_real].currency_field   # currency field paired to target
+        src_cur = lead_fields[src_real].currency_field       # currency field paired to source
+        if dst_cur and src_cur and record[src_cur]:
+            mon_vals[dst_cur] = record[src_cur].id           # copy the currency too
+    
+    if company:
+        # ===== DUAL CASE: Company + Individual =====
+        
+        # Update COMPANY with company-level data
+        company_vals = {
+            'street':                   record.street,
+            'street2':                  record.street2,
+            'city':                     record.city,
+            'state_id':                 record.state_id.id if record.state_id else False,
+            'zip':                      record.zip,
+            'country_id':               record.country_id.id if record.country_id else False,
+            'website':                  record.website,
+            'vat':                      record.x_studio_id_number,
+            'x_studio_category':        record.x_studio_category,
+            'x_studio_assets':          record.x_studio_assets,
+            'x_studio_liabilities':     record.x_studio_liabilities,
+            'x_studio_leasing':         record.x_studio_leasing,
+            'x_studio_annual_income':   record.x_studio_company_income,
+            'x_studio_annual_turnover': record.x_studio_turnover,
+        }
+        company_vals.update(mon_vals)
+        if lead_tag_ids:
+            company_vals['category_id'] = [(6, 0, lead_tag_ids)]
+        if record.x_studio_interested_in_product:
+            company_vals['x_studio_interested_in_product'] = [(6, 0, record.x_studio_interested_in_product.ids)]
+        if history_lines:
+            company_vals['x_studio_purchased_product_history'] = history_lines
+        
+        company.write(company_vals)
+        
+        # Update INDIVIDUAL with personal data
+        individual.write({
+            'email':              record.email_from,
+            'phone':              record.phone,
+            'user_id':            record.user_id.id if record.user_id else False,
+            'x_studio_id_number': record.x_studio_id,
+        })
+        
+        # "Contact" tag on individual (auto-create if missing)
+        contact_tag = env['res.partner.category'].search([('name', '=', 'Contact')], limit=1)
+        if not contact_tag:
+            contact_tag = env['res.partner.category'].create({'name': 'Contact'})
+        individual.write({'category_id': [(6, 0, [contact_tag.id])]})
+        
+        company.message_post(
+            body=f"<b>Dual-contact split</b><br/>"
+                 f"Lead: {record.name}<br/>"
+                 f"Company: {company.name} (id={company.id})<br/>"
+                 f"Individual: {individual.name} (id={individual.id})<br/>"
+                 f"Tags on company: {', '.join(record.tag_ids.mapped('name')) or 'none'}<br/>"
+                 f"Products: {len(record.x_studio_interested_in_product)}<br/>"
+                 f"History rows: {len(record.x_studio_one2many_field_7vm_1jq3nh96u)}"
+        )
+    
+    else:
+        # ===== SINGLE CASE: only the individual, no company =====
+        
+        single_vals = {
+            'email':                    record.email_from,
+            'phone':                    record.phone,
+            'street':                   record.street,
+            'street2':                  record.street2,
+            'city':                     record.city,
+            'state_id':                 record.state_id.id if record.state_id else False,
+            'zip':                      record.zip,
+            'country_id':               record.country_id.id if record.country_id else False,
+            'website':                  record.website,
+            'vat':                      record.x_studio_id_number,
+            'x_studio_id_number':       record.x_studio_id,
+            'x_studio_category':        record.x_studio_category,
+            'x_studio_assets':          record.x_studio_assets,
+            'x_studio_liabilities':     record.x_studio_liabilities,
+            'x_studio_leasing':         record.x_studio_leasing,
+            'x_studio_annual_income':   record.x_studio_company_income,
+            'x_studio_annual_turnover': record.x_studio_turnover,
+        }
+        single_vals.update(mon_vals)
+        if lead_tag_ids:
+            single_vals['category_id'] = [(6, 0, lead_tag_ids)]
+        if record.x_studio_interested_in_product:
+            single_vals['x_studio_interested_in_product'] = [(6, 0, record.x_studio_interested_in_product.ids)]
+        if history_lines:
+            single_vals['x_studio_purchased_product_history'] = history_lines
+        
+        individual.write(single_vals)
+        
+        individual.message_post(
+            body=f"<b>Single-contact sync</b> (no Company Name on lead)<br/>"
+                 f"Lead: {record.name}<br/>"
+                 f"All data synced to: {individual.name}<br/>"
+                 f"Tags: {', '.join(record.tag_ids.mapped('name')) or 'none'}<br/>"
+                 f"Products: {len(record.x_studio_interested_in_product)}<br/>"
+                 f"History rows: {len(record.x_studio_one2many_field_7vm_1jq3nh96u)}"
+        )]]></field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="state">code</field>
+    <field name="name">Execute Code</field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="update_lead_a7e497b9-1872-4cb0-9d43-8c51850f7cfa" model="ir.actions.server" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="update_path">x_studio_many2one_field_79q_1jqlen4su</field>
+    <field name="state">object_write</field>
+    <field name="crud_model_id" ref="crm.model_crm_lead"/>
+    <field name="resource_ref" ref="base.GEL"/>
+    <field name="name">Update Lead</field>
+    <field name="update_field_id" ref="new_many2one_lead_bea1f33c-a5c6-47f4-bde7-86f7b92c7fe8"/>
+    <field name="usage">base_automation</field>
+    <field name="value"><![CDATA[81]]></field>
+  </record>
+  <record id="currency_yuan_60eb768c-eb33-49a0-9630-57bb3f0cf69a" model="ir.actions.server" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="update_path">x_studio_yuan</field>
+    <field name="state">object_write</field>
+    <field name="crud_model_id" ref="crm.model_crm_lead"/>
+    <field name="resource_ref" ref="base.CNY"/>
+    <field name="name">Currency Yuan</field>
+    <field name="sequence">6</field>
+    <field name="update_field_id" ref="new_many2one_lead_9264b775-a60b-40c0-969d-b1a74b67d1dd"/>
+    <field name="usage">base_automation</field>
+    <field name="value"><![CDATA[6]]></field>
+  </record>
+</odoo>

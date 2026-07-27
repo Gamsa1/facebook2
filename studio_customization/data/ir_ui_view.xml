@@ -1,0 +1,2111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="odoo_studio_crm_lead_a24082a0-14e1-4445-94fd-d8ecd988ea61" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/list//field[@name='name']" position="after">
+          <field name="x_studio_id_number" optional="show"/>
+        </xpath>
+        <xpath expr="/list//field[@name='source_id']" position="after">
+          <field optional="show" name="x_studio_interest_in_product"/>
+          <field optional="show" name="x_studio_monetary_field_4k3_1jovmptgs" string="Expected Revenue"/>
+          <field name="company_currency"/>
+          <field name="x_studio_company_income" optional="show"/>
+          <field name="x_studio_turnover" optional="show"/>
+          <field name="x_studio_leasing" optional="show"/>
+          <field optional="show" name="x_studio_duplicate"/>
+          <field name="x_studio_original_lead" optional="show"/>
+        </xpath>
+        <xpath expr="/list//field[@name='source_id']" position="attributes">
+          <attribute name="widget">many2one</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+    <field name="key">studio_customization.odoo_studio_crm_lead_a24082a0-14e1-4445-94fd-d8ecd988ea61</field>
+    <field name="mode">extension</field>
+    <field name="model">crm.lead</field>
+    <field name="name">Odoo Studio: crm.lead.list.lead customization</field>
+    <field name="priority">240</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_list_view_fo_5a2e95ab-c261-49ab-9f68-f4499712f4db" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_5a2e95ab-c261-49ab-9f68-f4499712f4db</field>
+    <field name="model">x_1</field>
+    <field name="name">Default list view for x_1</field>
+    <field name="type">list</field>
+  </record>
+  <record id="odoo_studio_crm_lead_8341870f-e7b6-44e0-9cef-38b32c35f201" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//button[@name='action_set_won_rainbowman']" position="attributes">
+          <attribute name="string">მოხდა შესყიდვა</attribute>
+        </xpath>
+        <xpath expr="/form//button[@name='224']" position="attributes">
+          <attribute name="string">არ მოხდა შესყიდვა (რატომ)</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/group[2]" position="after">
+          <group name="studio_group_54t_1jq40ckvd">
+            <group name="studio_group_54t_left" string="Company information">
+              <field name="x_studio_category" string="კატეგორია"/>
+              <field name="x_studio_id_number" string="VAT/საიდენტიფიკაციო ნომერი"/>
+              <field name="x_studio_company_income" string="შემოსავალი"/>
+              <field name="x_studio_turnover" string="ბრუნვა"/>
+              <field name="x_studio_assets" string="აქტივები"/>
+              <field name="x_studio_liabilities" string="ვალდებილებები"/>
+              <field name="x_studio_leasing" string="ლიზინგი"/>
+            </group>
+            <group name="studio_group_54t_right">
+              <field name="x_studio_one2many_field_7vm_1jq3nh96u" string="პროდუქტების შესყიდვის ისტორია"/>
+              <field name="x_studio_interested_in_product" string="დაინტერესება პროდუქტში"/>
+            </group>
+          </group>
+        </xpath>
+        <xpath expr="/form//field[@name='x_studio_category']" position="before">
+          <xpath expr="/form//field[@name='partner_name']" position="move"/>
+        </xpath>
+        <xpath expr="/form/sheet/group[2]/group[@name='lead_partner']/div[2]" position="after">
+          <field name="x_studio_id" string="პირადი ნომერი"/>
+          <field name="x_studio_duplicate"/>
+          <field name="x_studio_original_lead"/>
+          <xpath expr="/form//field[@name='function']" position="move"/>
+        </xpath>
+        <xpath expr="/form/sheet/group[2]/group[@name='lead_partner']/field[@name='partner_id']" position="attributes">
+          <attribute name="string">დაკავშირებული კონტაქტი</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='email_from']" position="attributes">
+          <attribute name="string">იმეილი</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='phone']" position="attributes">
+          <attribute name="string">ტელეფონის ნომერი</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='function']" position="attributes">
+          <attribute name="string">პოზიცია</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='tag_ids']" position="after">
+          <field name="x_studio_monetary_field_4k3_1jovmptgs" string="შესყიდვის ფასი - $"/>
+          <field name="company_currency" invisible="True"/>
+          <field name="x_studio_monetary_field_3t0_1jqlekjgu" string="შესყიდვის ფასი - ₾"/>
+          <field name="x_studio_monetary_field_713_1jqleqatd" string="შესყიდვის ფასი - ¥"/>
+          <field name="x_studio_yuan" invisible="True"/>
+          <field name="x_studio_many2one_field_79q_1jqlen4su" string="Gel" invisible="True"/>
+        </xpath>
+        <xpath expr="/form//field[@name='user_id']" position="attributes">
+          <attribute name="string">გაყიდვების მენეჯერი</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/group[2]/group[2]/field[@name='priority']" position="attributes">
+          <attribute name="string">პრიორიტეტი</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='partner_name']" position="attributes">
+          <attribute name="string">კომპანიის დასახელება</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='street']" position="attributes">
+          <attribute name="string">მისამართი</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='source_id']" position="attributes">
+          <attribute name="widget">many2one</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+    <field name="key">studio_customization.odoo_studio_crm_lead_8341870f-e7b6-44e0-9cef-38b32c35f201</field>
+    <field name="mode">extension</field>
+    <field name="model">crm.lead</field>
+    <field name="name">Odoo Studio: crm.lead.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <record id="odoo_studio_crm_lead_39118c89-3300-4710-9b75-bbe0e2220b53" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/list//field[@name='stage_id']" position="after">
+          <field optional="show" name="x_studio_lost_reason"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+    <field name="key">studio_customization.odoo_studio_crm_lead_39118c89-3300-4710-9b75-bbe0e2220b53</field>
+    <field name="mode">extension</field>
+    <field name="model">crm.lead</field>
+    <field name="name">Odoo Studio: crm.lead.list.opportunity customization</field>
+    <field name="priority">320</field>
+    <field name="type">list</field>
+  </record>
+  <record id="odoo_studio_product__b8d88fb0-3301-4cff-90c0-c8d361b505b1" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form[@name='Product Template']//field[@name='type']" position="after">
+          <field name="x_studio_brand_2"/>
+          <field name="x_studio_model_1"/>
+          <field name="x_studio_engine"/>
+          <field name="x_studio_product_category"/>
+          <field name="x_studio_specification"/>
+        </xpath>
+        <xpath expr="/form[@name='Product Template']//field[@name='supplier_taxes_id']" position="after">
+          <xpath expr="/form[@name='Product Template']//field[@name='default_code']" position="move"/>
+        </xpath>
+        <xpath expr="/form[@name='Product Template']//field[@name='barcode']" position="after">
+          <field widget="file" filename="x_studio_product_file_filename" name="x_studio_product_file"/>
+          <field widget="file" invisible="True" name="x_studio_product_file_filename"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="key">studio_customization.odoo_studio_product__b8d88fb0-3301-4cff-90c0-c8d361b505b1</field>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">Odoo Studio: product.template.product.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_list_view_fo_140e5ba0-b7b2-4a1e-a2d9-6a01bb2e95b9" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_140e5ba0-b7b2-4a1e-a2d9-6a01bb2e95b9</field>
+    <field name="model">x_brand</field>
+    <field name="name">Default list view for x_brand</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_89193121-7f3b-46be-a7d1-78c2020c6c47" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Brand">
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <field class="oe_avatar" widget="image" name="x_studio_image"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_8fb920">
+            <group name="studio_group_8fb920_left"/>
+            <group name="studio_group_8fb920_right"/>
+          </group>
+          <group>
+            <field name="x_studio_notes" placeholder="Type down your notes here..." nolabel="1" colspan="2"/>
+          </group>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_89193121-7f3b-46be-a7d1-78c2020c6c47</field>
+    <field name="model">x_brand</field>
+    <field name="name">Default form view for x_brand</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__1e7b9785-14b2-45f8-bd5b-f7953437bc3a" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <filter invisible="1" string="My Activities" name="filter_activities_my" domain="[['activity_user_id', '=', uid]]"/>
+        <separator/>
+        <filter invisible="1" string="Late Activities" name="activities_overdue" domain="[('my_activity_date_deadline', '&lt;', 'today')]"/>
+        <filter invisible="1" string="Today Activities" name="activities_today" domain="[('my_activity_date_deadline', '=', 'today')]"/>
+        <filter invisible="1" string="Future Activities" name="activities_upcoming_all" domain="[('my_activity_date_deadline', '&gt;', 'today')]"/>
+        <separator/>
+        <separator/>
+        <filter string="Archived" name="archived_x_brand" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__1e7b9785-14b2-45f8-bd5b-f7953437bc3a</field>
+    <field name="model">x_brand</field>
+    <field name="name">Default search view for x_brand</field>
+    <field name="type">search</field>
+  </record>
+  <record id="odoo_studio_product__6d61cff2-b051-4665-9de7-ac4f08edc543" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/list//field[@name='name']" position="after">
+          <field optional="show" name="x_studio_brand_2"/>
+          <field optional="show" name="x_studio_model_1"/>
+          <field optional="show" name="x_studio_specification_1"/>
+          <field optional="show" name="x_studio_product_category_1"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_template_list_view_sellable"/>
+    <field name="key">studio_customization.odoo_studio_product__6d61cff2-b051-4665-9de7-ac4f08edc543</field>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">Odoo Studio: product.template.list.sellable customization</field>
+    <field name="priority">160</field>
+    <field name="type">list</field>
+  </record>
+  <record id="odoo_studio_product__55fec0ee-9d98-431f-b200-0b95924e154f" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/kanban/templates/t[@t-name='card']/main" position="after">
+          <field name="x_studio_specification" display="full"/>
+        </xpath>
+        <xpath expr="/kanban/templates/t[@t-name='card']/main/span" position="after">
+          <field name="x_studio_brand_1" display="full"/>
+          <field name="x_studio_model_1" display="full"/>
+        </xpath>
+        <xpath expr="/kanban//field[@name='product_properties']" position="after">
+          <field name="x_studio_product_category" display="full"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_template_kanban_view"/>
+    <field name="key">studio_customization.odoo_studio_product__55fec0ee-9d98-431f-b200-0b95924e154f</field>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">Odoo Studio: Product.template.product.kanban customization</field>
+    <field name="priority">160</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="default_list_view_fo_0243f45c-1247-4b29-a24c-834e31e591a0" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list default_order="x_studio_sequence asc,id desc">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_0243f45c-1247-4b29-a24c-834e31e591a0</field>
+    <field name="model">x_crm_lead_line_f594a</field>
+    <field name="name">Default list view for x_crm_lead_line_f594a</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_97e10358-72a9-462f-afa3-5daa3baf7fd4" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="crm_lead_line">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_0ceebd">
+            <group name="studio_group_0ceebd_left"/>
+            <group name="studio_group_0ceebd_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_97e10358-72a9-462f-afa3-5daa3baf7fd4</field>
+    <field name="model">x_crm_lead_line_f594a</field>
+    <field name="name">Default form view for x_crm_lead_line_f594a</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__4c71e148-4207-4887-8c8b-07b6758d03bf" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__4c71e148-4207-4887-8c8b-07b6758d03bf</field>
+    <field name="model">x_crm_lead_line_f594a</field>
+    <field name="name">Default search view for x_crm_lead_line_f594a</field>
+    <field name="type">search</field>
+  </record>
+  <record id="odoo_studio_res_part_3bedd7ee-51f9-45cb-a23b-65dc728156d4" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//div[@name='warning_tax']" position="before">
+          <header>
+            <button string="New Button" type="action"/>
+          </header>
+        </xpath>
+        <xpath expr="/form/sheet/group" position="after">
+          <group name="studio_group_7jg_1jq3uuark" invisible="set(category_id).intersection([3])">
+            <group name="studio_group_7jg_right">
+              <field name="x_studio_purchased_product_history" invisible="False" string="შესყიდული პროდუქტის ისტორია"/>
+            </group>
+          </group>
+          <group name="studio_group_2i3_1jq3q3fn9" invisible="set(category_id).intersection([3])">
+            <group name="studio_group_2i3_right">
+              <field name="x_studio_interested_in_product" string="დაინტერესება პროდუქტში">
+                <form string="Product" name="Product Template">
+                  <sheet name="product_form">
+                    <field name="product_variant_count" invisible="1"/>
+                    <field name="service_type" widget="radio" invisible="True"/>
+                    <field name="visible_reinvoice_policy" invisible="1"/>
+                    <field name="is_product_variant" invisible="1"/>
+                    <field name="attribute_line_ids" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="fiscal_country_codes" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                      <!-- Dummy tag for organizing buttons, using position='replace' when inheriting -->
+                      <span id="button_website" invisible="1"/>
+                      <button name="283" type="action" icon="fa-sitemap" class="oe_stat_button" invisible="product_variant_count &lt;= 1" groups="product.group_product_variant">
+                        <field string="Variants" name="product_variant_count" widget="statinfo"/>
+                      </button>
+                      <t groups="stock.group_stock_user">
+                        <field name="tracking" invisible="1"/>
+                        <field name="show_on_hand_qty_status_button" invisible="1"/>
+                        <field name="show_forecasted_qty_status_button" invisible="1"/>
+                        <button type="object" name="action_product_tmpl_forecast_report" invisible="not show_forecasted_qty_status_button" context="{'default_product_tmpl_id': id}" class="oe_stat_button" icon="fa-area-chart">
+                          <div class="d-flex flex-row gap-1 ms-1" name="studio_div_6f28dc">
+                            <div class="o_field_widget o_stat_info flex-column align-items-end gap-1" name="studio_div_f69214">
+                              <span class="o_stat_value">
+                                <field name="qty_available" widget="statinfo" nolabel="1" options="{'hide_trailing_zeros': true}"/>
+                              </span>
+                              <span class="o_stat_value" invisible="virtual_available != 0">
+                                <field name="virtual_available" widget="statinfo" nolabel="1" options="{'hide_trailing_zeros': true}"/>
+                              </span>
+                              <span class="o_stat_value text-info" invisible="virtual_available &lt;= 0">
+                                <field name="virtual_available" widget="statinfo" nolabel="1" options="{'hide_trailing_zeros': true}"/>
+                              </span>
+                              <span class="o_stat_value text-danger" invisible="virtual_available &gt;= 0">
+                                <field name="virtual_available" widget="statinfo" nolabel="1" options="{'hide_trailing_zeros': true}"/>
+                              </span>
+                            </div>
+                            <div class="o_field_widget o_stat_info flex-column align-items-start gap-1" name="studio_div_798b03">
+                              <span class="o_stat_value">
+                                <field name="uom_name" widget="statinfo" nolabel="1" groups="uom.group_uom"/>
+                                <span groups="!uom.group_uom">On Hand</span>
+                              </span>
+                              <span class="o_stat_value text-muted">
+                                            Forecasted
+                                        </span>
+                            </div>
+                          </div>
+                        </button>
+                      </t>
+                      <button class="oe_stat_button" name="action_open_documents" type="object" icon="fa-file-text-o">
+                        <field string="Documents" name="product_document_count" widget="statinfo"/>
+                      </button>
+                      <button class="oe_stat_button" name="action_view_sales" type="object" icon="fa-signal" help="Sold in the last 365 days. Outgoing represents confirmed sales orders not delivered, or partially delivered" groups="sales_team.group_sale_salesman" invisible="not sale_ok">
+                        <div class="o_field_widget o_stat_info" invisible="is_storable == True" name="studio_div_4750eb">
+                          <span class="o_stat_value d-flex gap-1">
+                            <field name="sales_count" widget="statinfo" nolabel="1" class="oe_inline" options="{'hide_trailing_zeros': true}"/>
+                            <field name="uom_name" class="oe_inline" groups="uom.group_uom"/>
+                          </span>
+                          <span class="o_stat_text">Sold</span>
+                        </div>
+                        <div class="d-flex flex-row gap-1 ms-1" invisible="is_storable == False" name="studio_div_4fa796">
+                          <div class="o_field_widget o_stat_info flex-column align-items-end gap-1" name="studio_div_a42ec9">
+                            <span class="o_stat_value d-flex gap-1">
+                              <field name="sales_count" widget="statinfo" nolabel="1" options="{'hide_trailing_zeros': true}"/>
+                            </span>
+                            <span class="o_stat_value d-flex gap-1">
+                              <field name="outgoing_qty" widget="statinfo" nolabel="1" options="{'hide_trailing_zeros': true}"/>
+                            </span>
+                          </div>
+                          <div class="o_field_widget o_stat_info flex-column align-items-start gap-1" name="studio_div_ccb034">
+                            <span class="o_stat_value">
+                              <field name="uom_name" widget="statinfo" nolabel="1" groups="uom.group_uom"/>
+                              <span groups="!uom.group_uom">Sold</span>
+                            </span>
+                            <span class="o_stat_value text-muted">
+                                Outgoing
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                      <t groups="stock.group_stock_user">
+                        <button type="object" name="action_view_orderpoints" invisible="not is_storable or nbr_reordering_rules != 1" class="oe_stat_button" icon="fa-refresh">
+                          <div class="d-flex flex-column" name="studio_div_3c0cc8">
+                            <div class="o_field_widget o_stat_info align-items-baseline flex-row gap-1 me-1" name="studio_div_f70e61">
+                              <span class="o_stat_text">Min:</span>
+                              <span class="o_stat_value">
+                                <field name="reordering_min_qty"/>
+                              </span>
+                            </div>
+                            <div class="o_field_widget o_stat_info align-items-baseline flex-row gap-1 me-1" name="studio_div_708b55">
+                              <span class="o_stat_text">Max:</span>
+                              <span class="o_stat_value">
+                                <field name="reordering_max_qty"/>
+                              </span>
+                            </div>
+                          </div>
+                        </button>
+                        <button type="object" name="action_view_orderpoints" invisible="not is_storable or nbr_reordering_rules == 1" class="oe_stat_button" icon="fa-refresh">
+                          <field name="nbr_reordering_rules" widget="statinfo"/>
+                        </button>
+                        <button type="object" name="action_view_stock_move_lines" invisible="type != 'consu'" class="oe_stat_button" icon="fa-exchange" groups="stock.group_stock_user">
+                          <div class="d-flex flex-column" name="studio_div_626870">
+                            <div class="o_field_widget o_stat_info align-items-baseline flex-row gap-1 me-1" name="studio_div_3cd14d">
+                              <span class="o_stat_text">In:</span>
+                              <span class="o_stat_value">
+                                <field name="nbr_moves_in"/>
+                              </span>
+                            </div>
+                            <div class="o_field_widget o_stat_info align-items-baseline flex-row gap-1 me-1" name="studio_div_afe2f8">
+                              <span class="o_stat_text">Out:</span>
+                              <span class="o_stat_value">
+                                <field name="nbr_moves_out"/>
+                              </span>
+                            </div>
+                          </div>
+                        </button>
+                        <button type="object" name="action_open_product_lot" invisible="tracking not in ['lot', 'serial']" class="oe_stat_button" icon="fa-bars" groups="stock.group_production_lot">
+                          <div class="o_stat_info" name="studio_div_c5a92e">
+                            <span class="o_stat_text">Lot/Serial Numbers</span>
+                          </div>
+                        </button>
+                        <button type="object" name="action_view_related_putaway_rules" class="oe_stat_button" icon="fa-random" groups="stock.group_stock_multi_locations" invisible="type == 'service'" context="{                                     'invisible_handle': True,                                     'single_product': product_variant_count == 1,                                 }">
+                          <div class="o_stat_info" name="studio_div_433445">
+                            <span class="o_stat_text">Putaway Rules</span>
+                          </div>
+                        </button>
+                        <button type="object" name="action_view_storage_category_capacity" groups="stock.group_stock_multi_locations" invisible="type == 'service'" class="oe_stat_button" icon="fa-cubes">
+                          <div class="o_stat_info" name="studio_div_ff3ab7">
+                            <span class="o_stat_text">Storage Capacities</span>
+                          </div>
+                        </button>
+                      </t>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="id" invisible="True"/>
+                    <div class="d-flex flex-column-reverse flex-md-row align-items-center gap-3" name="studio_div_d3a688">
+                      <div class="w-100" name="studio_div_f6f79d">
+                        <div class="oe_title" name="studio_div_96c5ef">
+                          <label for="name" class="d-md-none"/>
+                          <h1 class="o_outlined d-flex align-items-center gap-2">
+                            <field name="is_favorite" widget="boolean_favorite" nolabel="1" class="w-auto"/>
+                            <field class="text-break" name="name" options="{'line_breaks': False}" widget="text" placeholder="e.g. Cheese Burger"/>
+                          </h1>
+                        </div>
+                        <div name="options" class="d-flex flex-column flex-md-row flex-wrap gap-2">
+                          <span name="sale_option" class="d-inline-flex">
+                            <field name="sale_ok" widget="boolean_checkbox" class="w-auto"/>
+                            <label for="sale_ok"/>
+                          </span>
+                          <span name="purchase_option" class="d-inline-flex" invisible="type == 'combo'">
+                            <field name="purchase_ok" widget="boolean_checkbox" class="w-auto"/>
+                            <label for="purchase_ok"/>
+                          </span>
+                        </div>
+                      </div>
+                      <field name="image_1920" widget="product_image_with_media_dialog" options="{'convert_to_webp': True, 'preview_image': 'image_128', 'size': [90, 90], 'zoom': True}"/>
+                    </div>
+                    <notebook name="studio_notebook_047f58">
+                      <page string="General Information" name="general_information">
+                        <group name="studio_group_2df560">
+                          <group name="group_general">
+                            <field name="active" invisible="1"/>
+                            <field name="type" widget="radio" options="{'horizontal': True}"/>
+                            <field name="x_studio_brand_1"/>
+                            <field name="x_studio_model"/>
+                            <field name="x_studio_product_category"/>
+                            <field name="x_studio_specification"/>
+                            <field name="invoice_policy" invisible="not sale_ok or type == 'combo'"/>
+                            <field name="combo_ids" widget="many2many_tags" placeholder="e.g. Starter - Meal - Desert" invisible="type != 'combo'" options="{                                             'no_quick_create': True,                                             'on_tag_click': 'open_form',                                         }"/>
+                            <field name="service_tracking" invisible="(1 or type != 'service') or (not sale_ok)"/>
+                            <field name="product_tooltip" class="fst-italic text-muted" string="" invisible="not product_tooltip"/>
+                            <field name="show_qty_update_button" invisible="1"/>
+                            <field name="is_storable" invisible="type != 'consu'" groups="!stock.group_production_lot" widget="boolean_toggle" options="{'autosave': False}"/>
+                            <label for="is_storable" invisible="1"/>
+                            <!-- Replace the single line tacking + qty without stock with 2 individual lines with stock (tracking + tracking method // qty) -->
+                            <field name="tracking" placeholder="None" invisible="type != 'consu'" groups="stock.group_production_lot"/>
+                            <!-- Qty line if storable -->
+                            <label for="qty_available" class="oe_inline" invisible="not is_storable or not tracking" groups="stock.group_stock_user"/>
+                            <div name="qty_available_with_stock" class="o_row" invisible="not is_storable or not tracking" groups="stock.group_stock_user">
+                              <a type="object" name="action_open_quants" invisible="not show_qty_update_button" groups="stock.group_stock_manager">
+                                <field name="qty_available" readonly="True"/>
+                              </a>
+                              <field name="qty_available" invisible="show_qty_update_button" groups="stock.group_stock_manager" style="max-width: fit-content;"/>
+                              <field name="qty_available" readonly="True" groups="!stock.group_stock_manager" style="max-width: fit-content;"/>
+                              <span name="uom_span" groups="uom.group_uom">
+                                <field name="uom_name" class="oe_inline"/>
+                              </span>
+                            </div>
+                          </group>
+                          <group name="group_standard_price">
+                            <label for="list_price"/>
+                            <div name="list_price_per_uom_id" class="d-flex align-items-baseline gap-2">
+                              <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                              <span>per</span>
+                              <field name="uom_id" widget="many2one_uom" options="{'no_quick_create': True}"/>
+                            </div>
+                            <label for="base_unit_count" groups="product.group_show_uom_price"/>
+                            <div name="base_unit_price" groups="product.group_show_uom_price" class="d-flex flex-row">
+                              <field name="base_unit_count" invisible="product_variant_count &gt; 1" style="width: 4rem;"/>
+                              <field name="base_unit_id" options="{'no_open': True}" invisible="product_variant_count &gt; 1" placeholder="Specify unit" style="width: 10rem;"/>
+                              <div class="d-flex flex-row" invisible="base_unit_price == 0 or product_variant_count &gt; 1" name="studio_div_ea0597">
+                        (<field name="base_unit_price" class="oe_inline"/> / <field name="base_unit_name" class="oe_inline"/>)
+                    </div>
+                              <span class="text-muted" invisible="product_variant_count &lt;= 1">Based on variants</span>
+                            </div>
+                            <label for="taxes_id" invisible="type == 'combo'"/>
+                            <div name="taxes_div" class="o_row" invisible="type == 'combo'">
+                              <field name="taxes_id" widget="many2many_tax_tags" class="oe_inline" context="{                                 'default_type_tax_use': 'sale',                                 'search_default_sale': 1,                                 'search_default_service': type == 'service',                                 'search_default_goods': type == 'consu',                                 'search_default_domestictax': 1,                                 'append_fields': ['company_id'],                             }"/>
+                              <field name="tax_string" class="oe_inline"/>
+                            </div>
+                            <div colspan="2" class="d-flex align-items-baseline gap-2" name="standard_price_uom" invisible="type == 'combo'                                         or (not is_product_variant and (                                             product_variant_count &gt; 1                                             or (product_variant_count == 0 and is_dynamically_created)                                         ))">
+                              <label for="standard_price" class="o_form_label"/>
+                              <field class="oe_inline" name="standard_price" widget="monetary" options="{                                                 'currency_field': 'cost_currency_id',                                                 'field_digits': True,                                             }"/>
+                              <span groups="uom.group_uom">per</span>
+                              <field groups="uom.group_uom" name="uom_id" widget="many2one_uom" options="{'no_quick_create': True}"/>
+                            </div>
+                            <field name="supplier_taxes_id" invisible="not purchase_ok or type == 'combo'" widget="many2many_tax_tags" context="{                             'default_type_tax_use':'purchase',                             'search_default_purchase': 1,                             'search_default_service': type == 'service',                             'search_default_goods': type == 'consu',                             'search_default_domestictax': 1,                             'append_fields': ['company_id'],                         }"/>
+                            <field name="categ_id" string="Category"/>
+                            <field name="default_code" string="Reference" invisible="product_variant_count &gt; 1"/>
+                            <field name="valid_product_template_attribute_line_ids" invisible="1"/>
+                            <field name="barcode" invisible="product_variant_count &gt; 1                         or (product_variant_count == 0                         and valid_product_template_attribute_line_ids)                         or type in ['service', 'combo']"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" placeholder="Visible to all"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="cost_currency_id" invisible="1"/>
+                            <field name="product_variant_id" invisible="1"/>
+                          </group>
+                          <field name="product_properties" columns="2"/>
+                        </group>
+                        <group name="internal_notes" string="Internal Notes">
+                          <field colspan="2" name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                        </group>
+                      </page>
+                      <page name="variants" string="Attributes &amp; Variants" groups="product.group_product_variant" invisible="type == 'combo'">
+                        <field name="attribute_line_ids" widget="one2many" context="{'show_attribute': False}" force_save="1">
+                          <list string="Variants" editable="bottom" decoration-info="value_count &lt;= 1">
+                            <field name="value_count" column_invisible="True"/>
+                            <field name="sequence" widget="handle"/>
+                            <field name="attribute_id" placeholder="Attribute name (e.g. Color, Size, ... )" readonly="id"/>
+                            <field name="value_ids" placeholder="List of possible values (e.g. Blue, Green, White, ... )" widget="many2many_tags" options="{                                         'on_tag_click': 'open_form',                                         'color_field': 'color',                                     }" context="{                                         'default_attribute_id': attribute_id,                                         'show_attribute': False,                                         'form_view_ref': 'product.product_attribute_value_form',                                     }"/>
+                            <button string="Configure" class="float-end btn-secondary" type="object" name="action_open_attribute_values" groups="product.group_product_variant"/>
+                          </list>
+                        </field>
+                        <p class="opacity-50 oe_edit_only"><strong>Warning</strong>: adding or deleting attributes
+                        will delete and recreate existing variants and lead
+                        to the loss of their possible customizations.
+                    </p>
+                      </page>
+                      <page string="Sales" name="sales" invisible="not sale_ok">
+                        <group name="sale" class="o_label_nowrap">
+                          <group string="Upsell &amp; Cross-Sell" name="upsell" invisible="0">
+                            <field name="uom_ids" widget="many2many_uom_tags" options="{'no_quick_create': True, 'on_tag_click': 'open_form'}" groups="uom.group_uom" force_save="1" context="{'product_id': product_variant_id if product_variant_count == 1 else False, 'product_ids': product_variant_ids, 'show_variant_name': product_variant_count &gt; 1}"/>
+                            <field name="optional_product_ids" widget="many2many_tags" options="{'color_field': 'color', 'on_tag_click': 'edit_color'}" domain="[('id', '!=', id), '|', ('company_id', '=', company_id), ('company_id', '=', False)]" context="{'search_product_product': True}" placeholder="Recommend when 'Adding to Cart' or quotation"/>
+                          </group>
+                          <group name="extra_info" string="Extra Info">
+                            <field name="product_tag_ids" widget="many2many_tags" context="{'product_template_id': id}"/>
+                          </group>
+                          <group string="Short Description" name="description">
+                            <field colspan="2" name="description_sale" nolabel="1" placeholder="This note is added to sales orders and invoices."/>
+                          </group>
+                          <t groups="sales_team.group_sale_salesman">
+                            <group string="Warning on Sales Orders" groups="sale.group_warning_sale" name="studio_group_5419df">
+                              <field name="sale_line_warn_msg" placeholder="e.g. This product is defective." nolabel="1" colspan="2"/>
+                            </group>
+                          </t>
+                          <group name="expense_info" string="Expenses, Services &amp; Materials" invisible="not visible_reinvoice_policy">
+                            <field name="reinvoice_policy" widget="radio"/>
+                          </group>
+                        </group>
+                      </page>
+                      <page string="Prices" name="sales_price" invisible="not show_sales_price_page">
+                        <field name="fixed_pricelist_rule_ids" context="{                                     'default_compute_price': 'fixed',                                     'default_applied_on': '1_product',                                     'form_view_ref': 'product.product_pricelist_item_product_template_form_view',                                 }">
+                          <list editable="bottom">
+                            <control>
+                              <create name="add_product_price" string="Add a price"/>
+                            </control>
+                            <field name="product_id" string="Variant" column_invisible="parent.product_variant_count &lt; 2" optional="hide"/>
+                            <field name="pricelist_id" required="is_pricelist_required" options="{'no_create': True}"/>
+                            <field name="min_quantity" optional="show"/>
+                            <field name="uom_id" domain="[('id', 'in', allowed_uom_ids)] if allowed_uom_ids else []" groups="uom.group_uom" widget="many2one_uom" options="{'no_create': 1, 'product_field': 'product_tmpl_id'}" optional="show"/>
+                            <field name="date_start" string="Validity" widget="daterange" options="{'end_date_field': 'date_end'}" optional="hide"/>
+                            <field name="fixed_price" string="Unit Price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                            <!-- Needed for rule edition & creation on product.product form -->
+                            <field name="product_tmpl_id" column_invisible="True"/>
+                            <field name="currency_id" column_invisible="True"/>
+                          </list>
+                        </field>
+                      </page>
+                      <page string="Purchase" name="purchase" invisible="1 or not purchase_ok or type == 'combo'" groups="uom.group_uom">
+                        <group name="purchase">
+                          <group string="Vendor Bills" name="bill">
+                                </group>
+                        </group>
+                      </page>
+                      <page string="Inventory" name="inventory" invisible="type in ['service', 'combo']" groups="stock.group_stock_user">
+                        <group name="inventory">
+                          <field name="has_available_route_ids" invisible="1"/>
+                          <group string="Operations" name="operations" invisible="not (has_available_route_ids or route_from_categ_ids)">
+                            <label for="route_ids" invisible="not has_available_route_ids"/>
+                            <div invisible="not has_available_route_ids" name="studio_div_07fc90">
+                              <field name="route_ids" class="mb-0" widget="many2many_checkboxes"/>
+                              <button id="stock.view_diagram_button" string="View Diagram" type="action" name="381" icon="oi-arrow-right" class="btn btn-link pt-0" context="{'default_product_tmpl_id': id}"/>
+                            </div>
+                            <field name="route_from_categ_ids" widget="many2many_tags" invisible="not route_from_categ_ids"/>
+                          </group>
+                          <group name="group_lots_and_weight" string="Logistics" invisible="type != 'consu'">
+                            <field name="responsible_id" domain="[('share', '=', False)]" widget="many2one_avatar_user" groups="stock.group_stock_user"/>
+                            <label for="weight" invisible="product_variant_count &gt; 1 and not is_product_variant"/>
+                            <div class="o_row" name="weight" invisible="product_variant_count &gt; 1 and not is_product_variant">
+                              <field name="weight" class="oe_inline" style="max-width: 7rem;"/>
+                              <field name="weight_uom_name"/>
+                            </div>
+                            <label for="volume" invisible="product_variant_count &gt; 1 and not is_product_variant"/>
+                            <div class="o_row" name="volume" invisible="product_variant_count &gt; 1 and not is_product_variant">
+                              <field name="volume" string="Volume" class="oe_inline" style="max-width: 7rem;"/>
+                              <field name="volume_uom_name"/>
+                            </div>
+                            <label for="sale_delay" invisible="not sale_ok"/>
+                            <div invisible="not sale_ok" name="studio_div_0d9f33"><field name="sale_delay" class="oe_inline" style="vertical-align:baseline"/> days
+                </div>
+                          </group>
+                          <group string="Traceability" name="traceability" groups="stock.group_production_lot" invisible="tracking not in ['lot', 'serial']">
+                            <field name="lot_valuated" widget="confirm_boolean" invisible="tracking not in ['lot', 'serial']"/>
+                            <label for="serial_prefix_format" string="Custom Lot/Serial"/>
+                            <div class="d-flex" name="studio_div_f4d186">
+                              <field name="serial_prefix_format" style="max-width: 150px;"/>
+                              <field name="next_serial" style="max-width: 150px;"/>
+                            </div>
+                          </group>
+                          <group string="Counterpart Locations" name="stock_property" groups="base.group_no_one">
+                            <field name="property_stock_production"/>
+                            <field name="property_stock_inventory"/>
+                          </group>
+                        </group>
+                        <group name="studio_group_75ff6b">
+                          <group string="Description for Receipts" name="studio_group_fe0d88">
+                            <field name="description_pickingin" nolabel="1" colspan="2" placeholder="This note is added to receipt orders (e.g. where to store the product in the warehouse)."/>
+                          </group>
+                          <group string="Description for Delivery Orders" name="studio_group_9cfa0c">
+                            <field name="description_pickingout" nolabel="1" colspan="2" placeholder="This note is added to delivery orders."/>
+                          </group>
+                          <group string="Description for Internal Transfers" groups="stock.group_stock_multi_locations" name="studio_group_ddb883">
+                            <field name="description_picking" nolabel="1" colspan="2" placeholder="This note is added to internal transfer orders (e.g. where to pick the product in the warehouse)."/>
+                          </group>
+                        </group>
+                      </page>
+                      <page string="Accounting" name="invoicing" groups="account.group_account_readonly">
+                        <group name="properties" groups="account.group_account_readonly">
+                          <group string="Cost and Revenue" name="studio_group_fb9e72">
+                            <field name="property_account_income_id" placeholder="From Category" groups="account.group_account_readonly" decoration-muted="not property_account_income_active"/>
+                            <field name="property_account_expense_id" placeholder="From Category" groups="account.group_account_readonly" decoration-muted="not property_account_expense_active"/>
+                          </group>
+                        </group>
+                        <group name="accounting" groups="account.group_account_readonly,account.group_account_invoice"/>
+                      </page>
+                    </notebook>
+                  </sheet>
+                </form>
+              </field>
+              <field name="x_studio_leasing" string="ლიზინგი"/>
+              <field name="x_studio_category" string="კატეგორია"/>
+              <field name="x_studio_annual_turnover" string="ბრუნვა"/>
+              <field name="x_studio_annual_income" string="შემოსავალი"/>
+              <field name="x_studio_assets" string="აქტივები"/>
+              <field name="x_studio_liabilities" string="ვალდებულებები"/>
+            </group>
+          </group>
+        </xpath>
+        <xpath expr="/form//div[@id='vat_div']" position="after">
+          <field name="x_studio_id_number" string="პირადი ნომერი"/>
+        </xpath>
+        <xpath expr="/form/sheet/group/group/span[@name='address_name']/field[@name='type_address_label']" position="attributes">
+          <attribute name="string">მისამართი</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='vat']" position="attributes">
+          <attribute name="string">საიდენთიფიკაციო ნომერი</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='category_id']" position="after">
+          <field name="x_studio_monetary_field_e1_1jqlgm2sr" string="შესყივდვის ფასი - $"/>
+          <field name="currency_id"/>
+          <field name="x_studio_monetary_field_909_1jqlgo9rf" string="შესყიდვის ფასი - ₾"/>
+          <field name="x_studio_monetary_field_4j3_1jqlgp1lv" string="შესყიდვის ფასი - ¥"/>
+          <field name="x_studio_gel" invisible="True"/>
+          <field name="x_studio_yuan" invisible="True"/>
+        </xpath>
+        <xpath expr="/form/sheet/group/group[2]/field[@name='function']" position="attributes">
+          <attribute name="string">პოზიცია</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='website']" position="attributes">
+          <attribute name="string">ვებსაიტი</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="key">studio_customization.odoo_studio_res_part_3bedd7ee-51f9-45cb-a23b-65dc728156d4</field>
+    <field name="mode">extension</field>
+    <field name="model">res.partner</field>
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_list_view_fo_f2e6385f-443b-4c35-8965-cd532fb2b144" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list default_order="x_studio_sequence asc,id desc">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_f2e6385f-443b-4c35-8965-cd532fb2b144</field>
+    <field name="model">x_res_partner_line_730c9</field>
+    <field name="name">Default list view for x_res_partner_line_730c9</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_7fcc1844-0f3d-4ae1-b648-4747f6e09155" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="res_partner_line">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_73b2b6">
+            <group name="studio_group_73b2b6_left"/>
+            <group name="studio_group_73b2b6_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_7fcc1844-0f3d-4ae1-b648-4747f6e09155</field>
+    <field name="model">x_res_partner_line_730c9</field>
+    <field name="name">Default form view for x_res_partner_line_730c9</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__27bc22ed-3615-4007-9826-f25b4c5e2b24" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__27bc22ed-3615-4007-9826-f25b4c5e2b24</field>
+    <field name="model">x_res_partner_line_730c9</field>
+    <field name="name">Default search view for x_res_partner_line_730c9</field>
+    <field name="type">search</field>
+  </record>
+  <record id="odoo_studio_product__c2237d52-223a-48fa-bb03-60c9dcc7c63e" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/list//field[@name='default_code']" position="after">
+          <field name="x_studio_product_file" filename="x_studio_product_file_filename" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_template_tree_view"/>
+    <field name="key">studio_customization.odoo_studio_product__c2237d52-223a-48fa-bb03-60c9dcc7c63e</field>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">Odoo Studio: product.template.product.list customization</field>
+    <field name="priority">160</field>
+    <field name="type">list</field>
+  </record>
+  <record id="report_saleorder_raw_2d8ff2ed-9f4d-4b06-a052-331da4211a8d" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.report_saleorder_document_copy_1">
+        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang or 'ka_GE')"/>
+        <t t-call="web.html_container">
+          <t t-call="web.basic_layout">
+            <div class="page" style="...">
+              <!-- all the content I sent earlier -->
+            </div>
+          </t>
+        </t>
+      </t>
+    </field>
+    <field name="key">sale.report_saleorder_raw_copy_1</field>
+    <field name="name">report_saleorder_raw copy(1)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="report_saleorder_doc_6febcffa-8f4b-446e-96db-b3865718aabc" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.report_saleorder_document_copy_1">
+        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang or 'ka_GE')"/>
+        <t t-call="web.html_container">
+          <t t-call="web.basic_layout">
+            <div class="page" style="font-family: 'DejaVu Sans', 'Sylfaen', sans-serif; font-size: 10px; color: #000;">
+              <!-- HEADER -->
+              <table style="width:100%; border-collapse: collapse; margin-bottom: 8px;">
+                <tr>
+                  <td style="width: 25%; vertical-align: top;">
+                    <img t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 55px;"/>
+                  </td>
+                  <td style="vertical-align: top; text-align: right; font-size: 9px;">
+                    <div>ინვოისის ფორმა #-PD-05-A02</div>
+                    <div>გადასინჯვა <span t-out="doc.create_date.strftime('%d.%m.%Y') if doc.create_date else ''"/></div>
+                  </td>
+                </tr>
+              </table>
+              <h1 style="text-align:right; color:#1F4E8C; font-weight: bold; margin: 4px 0 16px 0;">invoisi</h1>
+              <!-- RECIPIENT / PAYER + META -->
+              <table style="width:100%; border-collapse: collapse; margin-bottom: 10px;">
+                <tr>
+                  <td style="width: 58%; vertical-align: top; padding-right: 8px;">
+                    <table style="width:100%; border: 1px solid #6FA8C6; border-collapse: collapse; margin-bottom: 6px;">
+                      <tr style="background:#D9EAF3;">
+                        <td colspan="2" style="border: 1px solid #6FA8C6; padding: 3px 6px; font-weight: bold;">მიმღები</td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px; width: 30%;">შპს</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.company_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">ს/კ</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.company_id.vat"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">ქ. მისამართი</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">ტელ.</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.company_id.phone"/>
+                          <t t-if="doc.company_id.mobile"> ; მობ. <span t-field="doc.company_id.mobile"/></t>
+                        </td>
+                      </tr>
+                    </table>
+                    <table style="width:100%; border: 1px solid #6FA8C6; border-collapse: collapse;">
+                      <tr style="background:#D9EAF3;">
+                        <td colspan="2" style="border: 1px solid #6FA8C6; padding: 3px 6px; font-weight: bold;">გადამხდელი</td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px; width: 30%;">შპს</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.partner_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">ს/კ</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.partner_id.vat"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">ტელ.</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                          <span t-field="doc.partner_id.phone"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="width: 42%; vertical-align: top;">
+                    <table style="width:100%; border-collapse: collapse;">
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; background:#D9EAF3;">თარიღი:</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; text-align:right;">
+                          <span t-field="doc.date_order" t-options="{'widget': 'date'}"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; background:#D9EAF3;">ინვოისის ნომერი:</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; text-align:right;">
+                          <span t-field="doc.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; background:#D9EAF3;">ვადა:</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; text-align:right;">
+                          <t t-if="doc.validity_date and doc.date_order"><t t-out="(doc.validity_date - doc.date_order.date()).days"/> დღე
+                                        </t>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; background:#D9EAF3;">მოწმდების ვადა:</td>
+                        <td style="border: 1px solid #6FA8C6; padding: 4px 6px; text-align:right;">
+                          <span t-field="doc.validity_date"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <!-- PRODUCT TABLE -->
+              <table style="width:100%; border-collapse: collapse; margin-top: 6px;">
+                <thead>
+                  <tr style="background:#D9EAF3;">
+                    <th style="border: 1px solid #6FA8C6; padding: 4px; width: 4%;">№</th>
+                    <th style="border: 1px solid #6FA8C6; padding: 4px;">დასახელება</th>
+                    <th style="border: 1px solid #6FA8C6; padding: 4px; width: 9%;">საზომი ერთეული</th>
+                    <th style="border: 1px solid #6FA8C6; padding: 4px; width: 8%;">რაოდენობა</th>
+                    <th style="border: 1px solid #6FA8C6; padding: 4px; width: 13%;">ერთეულის ფასი დღგ-ს გარეშე (დოლარში)</th>
+                    <th style="border: 1px solid #6FA8C6; padding: 4px; width: 13%;">სულ ღირებულება დღგ-ს გარეშე (დოლარში)</th>
+                    <th style="border: 1px solid #6FA8C6; padding: 4px; width: 13%;">სულ ღირებულება დღგ-ს ჩათვლით (დოლარში)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-set="lines_to_report" t-value="doc._get_order_lines_to_report().filtered(lambda l: not l.display_type)"/>
+                  <t t-foreach="lines_to_report" t-as="line">
+                    <tr>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:center;">
+                        <t t-out="line_index + 1"/>
+                      </td>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px;">
+                        <span t-field="line.name"/>
+                      </td>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:center;">
+                        <span t-field="line.product_uom_id"/>
+                      </td>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:center;">
+                        <span t-field="line.product_uom_qty"/>
+                      </td>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:right;">
+                        <span t-field="line.price_unit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                      </td>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:right;">
+                        <span t-field="line.price_subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                      </td>
+                      <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:right;">
+                        <span t-field="line.price_total" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                      </td>
+                    </tr>
+                  </t>
+                  <tr style="font-weight: bold; background:#F4F9FC;">
+                    <td colspan="5" style="border: 1px solid #6FA8C6; padding: 4px; text-align:right;">სულ</td>
+                    <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:right;">
+                      <span t-field="doc.amount_untaxed" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                    </td>
+                    <td style="border: 1px solid #6FA8C6; padding: 4px; text-align:right;">
+                      <span t-field="doc.amount_total" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p style="margin: 8px 0 4px 0;">მითითების ადგილი — <span t-field="doc.note"/></p>
+              <!-- PAYMENT SCHEDULE -->
+              <table style="width:100%; border-collapse: collapse; margin-top: 6px;">
+                <tr>
+                  <td style="width: 50%; vertical-align: top; padding-right: 12px;">
+                    <p>ჩვენგან გადახდის დღემდე არსებული ერთეულის ბაზარზე, კურსის შესაბამისად</p>
+                  </td>
+                  <td style="width: 50%; vertical-align: top;">
+                    <table style="width:100%; border-collapse: collapse;">
+                      <tr style="background:#D9EAF3;">
+                        <td colspan="3" style="border: 1px solid #6FA8C6; padding: 4px; font-weight: bold;">გადახდის გრაფიკი</td>
+                      </tr>
+                      <t t-set="roman" t-value="['I','II','III','IV','V','VI','VII','VIII','IX','X']"/>
+                      <t t-if="doc.payment_term_id and doc.payment_term_id.line_ids">
+                        <t t-foreach="doc.payment_term_id.line_ids" t-as="pline">
+                          <tr>
+                            <td style="border: 1px solid #6FA8C6; padding: 3px 6px;"><t t-out="roman[pline_index] if pline_index &lt; 10 else str(pline_index + 1)"/> გადახდა
+                                            </td>
+                            <td style="border: 1px solid #6FA8C6; padding: 3px 6px;">
+                              <t t-set="due" t-value="doc.date_order and (doc.date_order.date() + relativedelta(days=pline.nb_days))"/>
+                              <span t-out="due and due.strftime('%d.%m.%Y') or ''"/>
+                            </td>
+                            <td style="border: 1px solid #6FA8C6; padding: 3px 6px; text-align:center;">X</td>
+                          </tr>
+                        </t>
+                      </t>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <!-- FOOTER BANK DETAILS -->
+              <table style="width:100%; border-collapse: collapse; margin-top: 14px; font-size: 9px;">
+                <tr>
+                  <td style="border: 1px solid #6FA8C6; padding: 4px 6px;"><span t-field="doc.company_id.name"/> - ს/კ: <span t-field="doc.company_id.vat"/>;
+                            მისამართი: <span t-field="doc.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>;
+                            ტელ: <span t-field="doc.company_id.phone"/>
+                        </td>
+                </tr>
+                <t t-foreach="doc.company_id.bank_ids" t-as="bank">
+                  <tr>
+                    <td style="border: 1px solid #6FA8C6; padding: 4px 6px;">
+                                მიმღების ბანკი: <span t-field="bank.bank_id.name"/>;
+                                ბანკის კოდი: <span t-field="bank.bank_id.bic"/>;
+                                ა/ა: <span t-field="bank.acc_number"/>
+                            </td>
+                  </tr>
+                </t>
+              </table>
+            </div>
+          </t>
+        </t>
+      </t>
+    </field>
+    <field name="key">sale.report_saleorder_document_copy_1</field>
+    <field name="name">report_saleorder_document copy(1)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="document_tax_totals_c2b98c94-c12c-492c-97af-d01f7b067a66" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.document_tax_totals_copy_1">
+        <!--
+                Generic template to display tax totals in pdf reports.
+                Used by invoices, SO and PO.
+
+                ARGUMENTS:
+                - currency: The res.currency to use.
+                - tax_totals: dict in the form generated by account.move's _get_tax_totals.
+            -->
+        <t t-set="same_tax_base" t-value="tax_totals['same_tax_base']"/>
+        <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+          <tr t-if="subtotal['tax_groups']" class="o_subtotal">
+            <td>
+              <span t-out="subtotal['name']">Untaxed Amount</span>
+            </td>
+            <td class="text-end">
+              <span t-att-class="oe_subtotal_footer_separator" t-out="subtotal['base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">27.00</span>
+            </td>
+          </tr>
+          <t t-foreach="subtotal['tax_groups']" t-as="tax_group">
+            <tr class="o_taxes">
+              <t t-if="same_tax_base or tax_group['display_base_amount_currency'] is False">
+                <td style="max-width: 200px;">
+                  <span t-out="tax_group['group_name']">Tax 15%</span>
+                </td>
+                <td class="text-end o_price_total">
+                  <span class="text-nowrap" t-out="tax_group['tax_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">1.05</span>
+                </td>
+              </t>
+              <t t-else="">
+                <td>
+                  <span t-out="tax_group['group_name']">Tax 15%</span>
+                  <span> on </span>
+                  <span class="text-nowrap" t-out="tax_group['display_base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">27.00</span>
+                </td>
+                <td class="text-end o_price_total">
+                  <span class="text-nowrap" t-out="tax_group['tax_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">4.05</span>
+                </td>
+              </t>
+            </tr>
+          </t>
+        </t>
+        <tr t-if="'cash_rounding_base_amount_currency' in tax_totals">
+          <td>Rounding</td>
+          <td class="text-end">
+            <span t-out="tax_totals['cash_rounding_base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">0</span>
+          </td>
+        </tr>
+        <!--Total amount with all taxes-->
+        <tr class="o_total">
+          <td>
+            <strong>Total</strong>
+          </td>
+          <td class="text-end">
+            <strong t-out="tax_totals['total_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">31.05</strong>
+          </td>
+        </tr>
+      </t>
+    </field>
+    <field name="key">sale.document_tax_totals_copy_1</field>
+    <field name="name">document_tax_totals copy(1)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="report_saleorder_raw_d319125d-8807-4630-be18-d79144db87ce" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.report_saleorder_raw_copy_2">
+        <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="doc">
+            <t t-call="sale.report_saleorder_document_copy_2" t-lang="doc.partner_id.lang"/>
+          </t>
+        </t>
+      </t>
+    </field>
+    <field name="key">sale.report_saleorder_raw_copy_2</field>
+    <field name="name">report_saleorder_raw copy(2)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="report_saleorder_doc_fcee1326-66e4-4aa3-8ef9-e0289e2b086d" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.report_saleorder_document_copy_2">
+        <t t-set="address">
+          <div t-field="doc.partner_id" class="mb-0" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+          <p t-if="doc.partner_id.vat" class="mb-0"><t t-if="doc.company_id.account_fiscal_country_id.vat_label" t-out="doc.company_id.account_fiscal_country_id.vat_label"/><t t-else="">Tax ID</t>: <span t-field="doc.partner_id.vat"/></p>
+        </t>
+        <t t-set="is_proforma" t-value="env.context.get('proforma', False) or is_pro_forma"/>
+        <t t-set="layout_document_title">
+          <span t-if="is_proforma">Pro Forma Invoice # </span>
+          <span t-elif="doc.state in ['draft','sent']">Quotation # </span>
+          <span t-else="">Order # </span>
+          <span t-field="doc.name">SO0000</span>
+        </t>
+        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+        <t t-if="doc.partner_shipping_id == doc.partner_invoice_id                          and doc.partner_invoice_id != doc.partner_id                          or doc.partner_shipping_id != doc.partner_invoice_id">
+          <t t-set="information_block">
+            <strong>
+              <t t-if="doc.partner_shipping_id == doc.partner_invoice_id">
+                    Invoicing and Shipping Address
+                </t>
+              <t t-else="">
+                    Invoicing Address
+                </t>
+            </strong>
+            <div t-field="doc.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+            <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
+              <strong class="d-block mt-3">Shipping Address</strong>
+              <div t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+            </t>
+          </t>
+        </t>
+        <t t-call="web.external_layout" address="address" layout_document_title="layout_document_title" information_block="information_block" forced_vat="doc.fiscal_position_id.foreign_vat">
+          <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
+          <div class="page">
+            <div class="oe_structure"/>
+            <div class="row mb-4" id="informations">
+              <div t-if="doc.client_order_ref" class="col" name="informations_reference">
+                <strong>Your Reference</strong>
+                <div t-field="doc.client_order_ref">SO0000</div>
+              </div>
+              <div t-if="doc.date_order" class="col" name="informations_date">
+                <strong t-if="is_proforma">Issued Date</strong>
+                <strong t-elif="doc.state in ['draft', 'sent']">Quotation Date</strong>
+                <strong t-else="">Order Date</strong>
+                <div t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}">2023-12-31</div>
+              </div>
+              <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col" name="expiration_date">
+                <strong>Expiration</strong>
+                <div t-field="doc.validity_date">2023-12-31</div>
+              </div>
+              <div t-if="doc.incoterm" class="col">
+                <strong>Incoterm</strong>
+                <div t-if="doc.incoterm_location">
+                  <span t-field="doc.incoterm.code"/>
+                  <br/>
+                  <span t-field="doc.incoterm_location"/>
+                </div>
+                <div t-else="" t-field="doc.incoterm.code"/>
+              </div>
+              <div t-if="doc.commitment_date" class="col" name="delivery_date">
+                <strong>Delivery Date</strong>
+                <div t-field="doc.commitment_date" t-options="{'widget': 'date'}">
+                        2023-12-31
+                    </div>
+              </div>
+              <div t-if="doc.user_id.name" class="col">
+                <strong>Contact</strong>
+                <div t-field="doc.user_id">Mitchell Admin</div>
+              </div>
+            </div>
+            <!-- Is there a discount on at least one line? -->
+            <t t-set="lines_to_report" t-value="doc._get_order_lines_to_report()"/>
+            <t t-set="display_discount" t-value="any(l.discount &gt; 0 for l in lines_to_report)"/>
+            <!-- Hide taxes AND show taxed amounts on lines -->
+            <t t-set="hide_taxes_details" t-value="False"/>
+            <t t-set="display_taxes" t-value="not hide_taxes_details and any(l._has_taxes() for l in lines_to_report)"/>
+            <div class="oe_structure"/>
+            <table class="o_has_total_table table o_main_table table-borderless">
+              <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+              <thead style="display: table-row-group">
+                <tr>
+                  <th name="th_description" class="text-start">Description</th>
+                  <th name="th_quantity" class="text-end text-nowrap">Quantity</th>
+                  <th name="th_priceunit" class="text-end text-nowrap">Unit Price</th>
+                  <th name="th_discount" t-if="display_discount" class="text-end">
+                    <span>Disc.%</span>
+                  </th>
+                  <th name="th_taxes" t-if="display_taxes" class="text-end">
+                    <span>Taxes</span>
+                  </th>
+                  <th name="th_subtotal" class="text-end">
+                    <span>Amount</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="sale_tbody">
+                <t t-set="current_section" t-value="None"/>
+                <t t-set="current_subsection" t-value="None"/>
+                <t t-set="price_field" t-value="'price_total' if (hide_taxes_details or doc.company_price_include == 'tax_included') else 'price_subtotal'"/>
+                <t t-foreach="lines_to_report" t-as="line">
+                  <t t-set="is_note" t-value="line.display_type == 'line_note'"/>
+                  <t t-set="is_section" t-value="line.display_type == 'line_section'"/>
+                  <t t-set="is_subsection" t-value="line.display_type == 'line_subsection'"/>
+                  <t t-set="is_combo" t-value="line.product_type == 'combo'"/>
+                  <t t-if="is_section">
+                    <t t-set="current_section" t-value="line"/>
+                    <t t-set="current_subsection" t-value="None"/>
+                    <t t-set="line_padding" t-value="1"/>
+                    <t t-set="collapse_prices" t-value="line.collapse_prices"/>
+                  </t>
+                  <t t-elif="is_subsection">
+                    <t t-set="current_subsection" t-value="line"/>
+                    <t t-set="line_padding" t-value="2"/>
+                    <t t-set="collapse_prices" t-value="collapse_prices or line.collapse_prices"/>
+                  </t>
+                  <t t-else="">
+                    <t t-set="line_padding" t-value="3 if current_subsection else (2 if current_section else 0)"/>
+                  </t>
+                  <t t-if="line.combo_item_id">
+                    <t t-set="line_padding" t-value="line_padding + 1"/>
+                  </t>
+                  <t t-set="padding_style" t-value="line_padding and ('padding-left:' + str(line_padding * 8) + 'px') or ''"/>
+                  <t t-set="show_section_total" t-value="is_section or not line.parent_id.collapse_prices"/>
+                  <t t-if="not line.collapse_composition">
+                    <tr t-if="is_section or is_subsection" name="tr_section" t-attf-class="fw-bold {{'o_line_section' if is_section else 'o_line_subsection'}}">
+                      <t t-set="show_section_total" t-value="(                                         (                                             is_section                                             or not line.parent_id.collapse_prices                                         )                                         and not line.is_downpayment                                     )"/>
+                      <t t-set="section_name_colspan" t-value="3 + (1 if display_discount else 0) + (1 if display_taxes else 0)"/>
+                      <t t-if="not show_section_total">
+                        <t t-set="section_name_colspan" t-value="99"/>
+                      </t>
+                      <td name="td_section_name" t-att-colspan="section_name_colspan" class="border-end-0" t-att-style="padding_style">
+                        <span t-field="line.name">A section title</span>
+                      </td>
+                      <td t-if="show_section_total" name="td_section_price" class="text-end o_price_total">
+                        <span t-out="line._get_section_totals(price_field)" class="text-nowrap" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        27.00
+                                    </span>
+                      </td>
+                    </tr>
+                    <tr t-elif="is_note" name="tr_note" class="fst-italic o_line_note">
+                      <td name="td_note_name" colspan="99" t-att-style="padding_style">
+                        <span t-field="line.name">A note, whose content usually applies to the section or product above.</span>
+                      </td>
+                    </tr>
+                    <tr t-elif="is_combo" name="tr_combo" class="o_line_combo fw-bold">
+                      <td name="td_combo_name" t-att-style="padding_style">
+                        <span t-field="line.name">Combo Product</span>
+                      </td>
+                      <td name="td_combo_quantity" class="text-end">
+                        <span t-field="line.product_uom_qty"/>
+                        <span t-field="line.product_uom_id"/>
+                      </td>
+                      <td name="td_combo_price" t-att-colspan="2 + (1 if display_discount else 0) + (1 if display_taxes else 0)" class="text-end o_price_total">
+                        <span t-if="not collapse_prices" name="price_subtotal_combo" t-out="line._get_combo_totals(price_field)" class="text-nowrap" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        27.00
+                                    </span>
+                      </td>
+                    </tr>
+                    <tr t-else="" name="tr_product">
+                      <td name="td_product_name" class="w-100" t-att-style="padding_style">
+                        <div class="d-flex align-items-start">
+                          <img t-if="doc.company_id.display_product_images_on_so and line.product_id.image_128" t-att-src="image_data_uri(line.product_id.image_128)" t-att-alt="line.product_id.display_name" class="o_sale_report_product_image me-2 rounded object-fit-cover align-top"/>
+                          <div class="o_product_name_cell align-top">
+                            <span t-field="line.name">Bacon Burger</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td name="td_product_quantity" class="o_td_quantity text-end">
+                        <span t-field="line.product_uom_qty" class="text-nowrap">3</span>
+                        <span t-field="line.product_uom_id">units</span>
+                        <span t-if="line.product_uom_id != line.product_id.uom_id" class="text-muted small">
+                          <t t-set="quantity_in_product_uom" t-value="line.product_uom_id._compute_quantity(line.product_uom_qty, line.product_id.uom_id)"/>
+                          <br/>
+                          <span t-out="quantity_in_product_uom" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit'}"/>
+                          <span t-field="line.product_id.uom_id"/>
+                        </span>
+                      </td>
+                      <td name="td_product_priceunit" class="text-end text-nowrap">
+                        <span t-if="not collapse_prices and line.discount &lt; 0" t-out="(1 - line.discount / 100.0) * line.price_unit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;decimal_precision&quot;: &quot;Product Price&quot;}"/>
+                        <span t-elif="not collapse_prices" t-field="line.price_unit">
+                                        25.00
+                                    </span>
+                      </td>
+                      <td t-if="display_discount" name="td_product_discount" class="text-end">
+                        <t t-if="not collapse_prices">
+                          <!-- ! Always check collapse_prices separately; keep discount condition below for XPath -->
+                          <span t-if="line.discount &gt; 0" t-field="line.discount">-</span>
+                        </t>
+                      </td>
+                      <t t-set="taxes" t-value="', '.join(tax.tax_label for tax in line.tax_ids if tax.tax_label)"/>
+                      <td t-if="display_taxes" name="td_product_taxes" t-attf-class="text-end {{ 'text-nowrap' if len(taxes) &lt; 12 else '' }}">
+                        <span t-out="taxes">Tax 15%</span>
+                      </td>
+                      <td name="td_product_subtotal" class="text-end o_price_total">
+                        <t t-if="not line.is_downpayment and not collapse_prices">
+                          <span t-if="price_field == 'price_subtotal'" t-field="line.price_subtotal">
+                                            27.00
+                                        </span>
+                          <span t-else="" t-field="line.price_total">
+                                            27.00
+                                        </span>
+                        </t>
+                      </td>
+                    </tr>
+                  </t>
+                  <t t-else="">
+                    <!-- Displaying the section inner content, grouped by taxes -->
+                    <tr t-foreach="line._get_grouped_section_summary(display_taxes)" t-as="section_line" name="tr_section_group">
+                      <td name="td_section_group_name" t-att-style="padding_style">
+                        <span t-field="line.name">
+                                        Section Summary
+                                    </span>
+                      </td>
+                      <td name="td_section_group_quantity" class="text-end text-nowrap">
+                        <span>1.00 Units</span>
+                      </td>
+                      <td name="td_section_group_priceunit" class="text-end text-nowrap">
+                        <span t-if="show_section_total" name="price_subtotal_section_grouped" t-out="section_line['price_subtotal']" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        25.00
+                                    </span>
+                      </td>
+                      <td t-if="display_discount" name="td_section_group_discount">
+                        <!-- NOTE: not computed atm, but at least provides the API for it if needed in the future -->
+                        <t t-set="aggregated_discount" t-value="section_line.get('discount', 0)"/>
+                        <span t-if="aggregated_discount" t-out="aggregated_discount">-</span>
+                      </td>
+                      <td t-if="display_taxes" name="td_section_group_taxes" t-attf-class="text-end {{ 'text-nowrap' if len(section_line['tax_labels']) &lt; 10 else '' }}">
+                        <span t-out="', '.join(section_line['tax_labels'])">
+                                        Tax 15%
+                                    </span>
+                      </td>
+                      <td name="td_section_group_total" class="text-end o_price_total">
+                        <span t-if="show_section_total" t-out="section_line[price_field]" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        30.00
+                                    </span>
+                      </td>
+                    </tr>
+                  </t>
+                </t>
+              </tbody>
+            </table>
+            <div class="clearfix" name="so_total_summary">
+              <div id="total" class="row mt-n3" name="total">
+                <div>
+                  <table class="o_total_table table table-borderless ms-auto w-auto">
+                    <!-- Tax totals -->
+                    <t t-call="sale.document_tax_totals_copy_2" tax_totals="doc.tax_totals" currency="doc.currency_id"/>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="oe_structure"/>
+            <div t-if="not doc.signature or not doc.env.context.get('sale_include_signature')" class="oe_structure"/>
+            <div t-else="" class="mt-4 ml64 mr4" name="signature">
+              <div class="offset-8">
+                <strong>Signature</strong>
+              </div>
+              <div class="offset-8">
+                <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+              </div>
+              <div class="offset-8 text-center">
+                <span t-field="doc.signed_by">Oscar Morgan</span>
+              </div>
+            </div>
+            <div>
+              <span t-field="doc.note" t-attf-style="#{'text-align:justify;text-justify:inter-word;' if doc.company_id.terms_type != 'html' else ''}" name="order_note"/>
+              <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                <span t-field="doc.payment_term_id.note">The payment should also be transmitted with love</span>
+              </p>
+              <div class="oe_structure"/>
+              <p t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)" id="fiscal_position_remark">
+                <strong>Fiscal Position Remark:</strong>
+                <span t-field="doc.fiscal_position_id.sudo().note">No further requirements for this payment</span>
+              </p>
+            </div>
+            <div class="oe_structure"/>
+            <t t-set="base_address" t-value="doc.env['ir.config_parameter'].sudo().get_str('web.base.url')"/>
+            <t t-set="portal_url" t-value="base_address + '/my/orders/' + str(doc.id) + '#portal_connect_software_modal_btn'"/>
+            <div t-if="any(u._is_portal() for u in doc.partner_id.user_ids) and doc._get_edi_builders()" class="text-center"><a t-att-href="portal_url">Connect your software</a> with <t t-out="doc.company_id.name"/> to create quotes automatically.
+            </div>
+          </div>
+        </t>
+      </t>
+    </field>
+    <field name="key">sale.report_saleorder_document_copy_2</field>
+    <field name="name">report_saleorder_document copy(2)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="document_tax_totals_68ebe368-b8ae-4333-b338-02a8136d52e2" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.document_tax_totals_copy_2">
+        <!--
+                Generic template to display tax totals in pdf reports.
+                Used by invoices, SO and PO.
+
+                ARGUMENTS:
+                - currency: The res.currency to use.
+                - tax_totals: dict in the form generated by account.move's _get_tax_totals.
+            -->
+        <t t-set="same_tax_base" t-value="tax_totals['same_tax_base']"/>
+        <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+          <tr t-if="subtotal['tax_groups']" class="o_subtotal">
+            <td>
+              <span t-out="subtotal['name']">Untaxed Amount</span>
+            </td>
+            <td class="text-end">
+              <span t-att-class="oe_subtotal_footer_separator" t-out="subtotal['base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">27.00</span>
+            </td>
+          </tr>
+          <t t-foreach="subtotal['tax_groups']" t-as="tax_group">
+            <tr class="o_taxes">
+              <t t-if="same_tax_base or tax_group['display_base_amount_currency'] is False">
+                <td style="max-width: 200px;">
+                  <span t-out="tax_group['group_name']">Tax 15%</span>
+                </td>
+                <td class="text-end o_price_total">
+                  <span class="text-nowrap" t-out="tax_group['tax_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">1.05</span>
+                </td>
+              </t>
+              <t t-else="">
+                <td>
+                  <span t-out="tax_group['group_name']">Tax 15%</span>
+                  <span> on </span>
+                  <span class="text-nowrap" t-out="tax_group['display_base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">27.00</span>
+                </td>
+                <td class="text-end o_price_total">
+                  <span class="text-nowrap" t-out="tax_group['tax_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">4.05</span>
+                </td>
+              </t>
+            </tr>
+          </t>
+        </t>
+        <tr t-if="'cash_rounding_base_amount_currency' in tax_totals">
+          <td>Rounding</td>
+          <td class="text-end">
+            <span t-out="tax_totals['cash_rounding_base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">0</span>
+          </td>
+        </tr>
+        <!--Total amount with all taxes-->
+        <tr class="o_total">
+          <td>
+            <strong>Total</strong>
+          </td>
+          <td class="text-end">
+            <strong t-out="tax_totals['total_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">31.05</strong>
+          </td>
+        </tr>
+      </t>
+    </field>
+    <field name="key">sale.document_tax_totals_copy_2</field>
+    <field name="name">document_tax_totals copy(2)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_external_20e3d304-59d9-495d-b184-b93e87a5e392" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='web.external_layout_standard']/div/table/tr" position="replace">
+          <tbody>
+            <tr>
+              <td t-if="company.logo" class="align-top pe-3">
+                <img class="o_company_logo_big" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+              </td>
+              <td class="align-top text-start w-100">
+                <t t-call="web.company_address_list" ws-call-key="1" ws-view-id="207"/>
+              </td>
+              <td>
+                <p>
+                  <br/>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="web.external_layout_standard"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._web.external_layout_standard</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: external_layout_standard report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_company__2a5962c7-64bf-4100-a791-89964c49298e" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='web.company_address_list']/ul[@name='company_address_list']/li[3]" position="replace" meta-t-if="not forced_vat"/>
+        <xpath expr="/t[@t-name='web.company_address_list']/ul[@name='company_address_list']/li[2]" position="replace" meta-t-else=""/>
+        <xpath expr="/t[@t-name='web.company_address_list']/ul[@name='company_address_list']/li[2]" position="replace" meta-t-else=""/>
+        <xpath expr="/t[@t-name='web.company_address_list']/ul[@name='company_address_list']/li" position="replace" meta-t-if="company.is_company_details_empty">
+          <li t-if="not forced_vat">
+            <br/>
+            <table class="table o_table table-borderless">
+              <tbody>
+                <tr>
+                  <td>
+                    <p>
+                      <strong>მიმღები</strong>
+                      <br/>
+                      <strong t-field="company.name"/>
+                      <br/>
+                      <t t-if="company.vat">ს/კ: <span t-field="company.vat"/>
+                  <br/>
+                </t>
+                      <t t-if="company.street">
+                        <span t-field="company.street"/>
+                        <br/>
+                      </t>
+                      <t t-if="company.phone">ტელ: <span t-field="company.phone"/>
+                </t>
+                    </p>
+                    <p>406217721</p>
+                  </td>
+                  <td>
+                    <p>
+                      <strong>გადამხდელი</strong>
+                      <br/>
+                      <strong t-field="doc.partner_id.commercial_company_name"/>
+                      <t t-if="doc.partner_id.phone"><br/>ტელ: <span t-field="doc.partner_id.phone"/>
+                </t>
+                      <t t-if="doc.partner_id.vat"><br/>ს/ნ: <span t-field="doc.partner_id.vat"/>
+                </t>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br/>
+            <br/>
+          </li>
+          <li t-else="">
+        </li>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="web.company_address_list"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._web.company_address_list</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: company_address_list report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_report_s_6c8009a4-7fac-4b9a-a7d6-749db7c9258c" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']/div/div" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']//div[@t-field='doc.user_id']" position="replace" meta-t-field="doc.user_id"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[6]/strong" position="replace">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']/div/div[3]" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']/div/div[5]" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']/div/div[8]/div" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document_copy_2']//t[@t-call='web.external_layout']/div/div[9]" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="report_saleorder_doc_fcee1326-66e4-4aa3-8ef9-e0289e2b086d"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._sale.report_saleorder_document_copy_2</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: report_saleorder_document copy(2) report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_address__9f03fd3a-b892-4cc6-9125-be29199fdcde" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='web.address_layout']/div[2]" position="inside" meta-class="oe_structure" meta-t-else="">
+          <br/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="web.address_layout"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._web.address_layout</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: address_layout report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_external_09d9069e-e937-4aca-8ddc-6b07daee3868" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='web.external_layout_body']/div/t[3]" position="after" meta-t-out="0">
+          <p>
+            <img src="/web/image/690-3c44060b/e3ab015d-cb97-4e4a-a2e2-f930f956a83f.png" alt="" data-attachment-id="690" class="img img-fluid o_we_custom_image"/>
+          </p>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="web.external_layout_body"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._web.external_layout_body</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: external_layout_body report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="report_saleorder_raw_a3f05f74-6e25-4e7d-adfe-3c59e80aba1c" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.report_saleorder_raw_copy_2_copy_1">
+        <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="doc">
+            <t t-call="sale.report_saleorder_document_copy_2_copy_1" t-lang="doc.partner_id.lang"/>
+          </t>
+        </t>
+      </t>
+    </field>
+    <field name="key">sale.report_saleorder_raw_copy_2_copy_1</field>
+    <field name="name">report_saleorder_raw copy(2) copy(1)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="report_saleorder_doc_3af04efe-85de-4db7-a366-24b3831b7dfb" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.report_saleorder_document_copy_2_copy_1">
+        <t t-set="address">
+          <div t-field="doc.partner_id" class="mb-0" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+          <p t-if="doc.partner_id.vat" class="mb-0"><t t-if="doc.company_id.account_fiscal_country_id.vat_label" t-out="doc.company_id.account_fiscal_country_id.vat_label"/><t t-else="">Tax ID</t>: <span t-field="doc.partner_id.vat"/></p>
+        </t>
+        <t t-set="is_proforma" t-value="env.context.get('proforma', False) or is_pro_forma"/>
+        <t t-set="layout_document_title">
+          <span t-if="is_proforma">Pro Forma Invoice # </span>
+          <span t-elif="doc.state in ['draft','sent']">Quotation # </span>
+          <span t-else="">Order # </span>
+          <span t-field="doc.name">SO0000</span>
+        </t>
+        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+        <t t-if="doc.partner_shipping_id == doc.partner_invoice_id                          and doc.partner_invoice_id != doc.partner_id                          or doc.partner_shipping_id != doc.partner_invoice_id">
+          <t t-set="information_block">
+            <strong>
+              <t t-if="doc.partner_shipping_id == doc.partner_invoice_id">
+                    Invoicing and Shipping Address
+                </t>
+              <t t-else="">
+                    Invoicing Address
+                </t>
+            </strong>
+            <div t-field="doc.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+            <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
+              <strong class="d-block mt-3">Shipping Address</strong>
+              <div t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+            </t>
+          </t>
+        </t>
+        <t t-call="web.external_layout" address="address" layout_document_title="layout_document_title" information_block="information_block" forced_vat="doc.fiscal_position_id.foreign_vat">
+          <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
+          <div class="page">
+            <div class="oe_structure">
+              <br/>
+            </div>
+            <div class="row mb-4" id="informations">
+              <div t-if="doc.client_order_ref" class="col" name="informations_reference">
+                <strong>Your Reference</strong>
+                <div t-field="doc.client_order_ref">SO0000</div>
+              </div>
+              <div t-if="doc.date_order" class="col" name="informations_date">
+                <strong t-if="is_proforma">Issued Date</strong>
+                <strong t-elif="doc.state in ['draft', 'sent']">Quotation Date</strong>
+                <strong t-else="">Order Date</strong>
+                <div t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}">2023-12-31</div>
+              </div>
+              <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col" name="expiration_date">
+                <strong>Expiration</strong>
+                <div t-field="doc.validity_date">2023-12-31</div>
+              </div>
+              <div t-if="doc.incoterm" class="col">
+                <strong>Incoterm</strong>
+                <div t-if="doc.incoterm_location">
+                  <span t-field="doc.incoterm.code"/>
+                  <br/>
+                  <span t-field="doc.incoterm_location"/>
+                </div>
+                <div t-else="" t-field="doc.incoterm.code"/>
+              </div>
+              <div t-if="doc.commitment_date" class="col" name="delivery_date">
+                <strong>Delivery Date</strong>
+                <div t-field="doc.commitment_date" t-options="{'widget': 'date'}">
+                        2023-12-31
+                    </div>
+              </div>
+              <div t-if="doc.user_id.name" class="col">
+                <br/>
+              </div>
+            </div>
+            <!-- Is there a discount on at least one line? -->
+            <t t-set="lines_to_report" t-value="doc._get_order_lines_to_report()"/>
+            <t t-set="display_discount" t-value="any(l.discount &gt; 0 for l in lines_to_report)"/>
+            <!-- Hide taxes AND show taxed amounts on lines -->
+            <t t-set="hide_taxes_details" t-value="False"/>
+            <t t-set="display_taxes" t-value="not hide_taxes_details and any(l._has_taxes() for l in lines_to_report)"/>
+            <div class="oe_structure">
+              <br/>
+            </div>
+            <table class="o_has_total_table table o_main_table table-borderless">
+              <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+              <thead style="display: table-row-group">
+                <tr>
+                  <th name="th_description" class="text-start">Description</th>
+                  <th name="th_quantity" class="text-end text-nowrap">Quantity</th>
+                  <th name="th_priceunit" class="text-end text-nowrap">Unit Price</th>
+                  <th name="th_discount" t-if="display_discount" class="text-end">
+                    <span>Disc.%</span>
+                  </th>
+                  <th name="th_taxes" t-if="display_taxes" class="text-end">
+                    <span>Taxes</span>
+                  </th>
+                  <th name="th_subtotal" class="text-end">
+                    <span>Amount</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="sale_tbody">
+                <t t-set="current_section" t-value="None"/>
+                <t t-set="current_subsection" t-value="None"/>
+                <t t-set="price_field" t-value="'price_total' if (hide_taxes_details or doc.company_price_include == 'tax_included') else 'price_subtotal'"/>
+                <t t-foreach="lines_to_report" t-as="line">
+                  <t t-set="is_note" t-value="line.display_type == 'line_note'"/>
+                  <t t-set="is_section" t-value="line.display_type == 'line_section'"/>
+                  <t t-set="is_subsection" t-value="line.display_type == 'line_subsection'"/>
+                  <t t-set="is_combo" t-value="line.product_type == 'combo'"/>
+                  <t t-if="is_section">
+                    <t t-set="current_section" t-value="line"/>
+                    <t t-set="current_subsection" t-value="None"/>
+                    <t t-set="line_padding" t-value="1"/>
+                    <t t-set="collapse_prices" t-value="line.collapse_prices"/>
+                  </t>
+                  <t t-elif="is_subsection">
+                    <t t-set="current_subsection" t-value="line"/>
+                    <t t-set="line_padding" t-value="2"/>
+                    <t t-set="collapse_prices" t-value="collapse_prices or line.collapse_prices"/>
+                  </t>
+                  <t t-else="">
+                    <t t-set="line_padding" t-value="3 if current_subsection else (2 if current_section else 0)"/>
+                  </t>
+                  <t t-if="line.combo_item_id">
+                    <t t-set="line_padding" t-value="line_padding + 1"/>
+                  </t>
+                  <t t-set="padding_style" t-value="line_padding and ('padding-left:' + str(line_padding * 8) + 'px') or ''"/>
+                  <t t-set="show_section_total" t-value="is_section or not line.parent_id.collapse_prices"/>
+                  <t t-if="not line.collapse_composition">
+                    <tr t-if="is_section or is_subsection" name="tr_section" t-attf-class="fw-bold {{'o_line_section' if is_section else 'o_line_subsection'}}">
+                      <t t-set="show_section_total" t-value="(                                         (                                             is_section                                             or not line.parent_id.collapse_prices                                         )                                         and not line.is_downpayment                                     )"/>
+                      <t t-set="section_name_colspan" t-value="3 + (1 if display_discount else 0) + (1 if display_taxes else 0)"/>
+                      <t t-if="not show_section_total">
+                        <t t-set="section_name_colspan" t-value="99"/>
+                      </t>
+                      <td name="td_section_name" t-att-colspan="section_name_colspan" class="border-end-0" t-att-style="padding_style">
+                        <span t-field="line.name">A section title</span>
+                      </td>
+                      <td t-if="show_section_total" name="td_section_price" class="text-end o_price_total">
+                        <span t-out="line._get_section_totals(price_field)" class="text-nowrap" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        27.00
+                                    </span>
+                      </td>
+                    </tr>
+                    <tr t-elif="is_note" name="tr_note" class="fst-italic o_line_note">
+                      <td name="td_note_name" colspan="99" t-att-style="padding_style">
+                        <span t-field="line.name">A note, whose content usually applies to the section or product above.</span>
+                      </td>
+                    </tr>
+                    <tr t-elif="is_combo" name="tr_combo" class="o_line_combo fw-bold">
+                      <td name="td_combo_name" t-att-style="padding_style">
+                        <span t-field="line.name">Combo Product</span>
+                      </td>
+                      <td name="td_combo_quantity" class="text-end">
+                        <span t-field="line.product_uom_qty"/>
+                        <span t-field="line.product_uom_id"/>
+                      </td>
+                      <td name="td_combo_price" t-att-colspan="2 + (1 if display_discount else 0) + (1 if display_taxes else 0)" class="text-end o_price_total">
+                        <span t-if="not collapse_prices" name="price_subtotal_combo" t-out="line._get_combo_totals(price_field)" class="text-nowrap" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        27.00
+                                    </span>
+                      </td>
+                    </tr>
+                    <tr t-else="" name="tr_product">
+                      <td name="td_product_name" class="w-100" t-att-style="padding_style">
+                        <div class="d-flex align-items-start">
+                          <img t-if="doc.company_id.display_product_images_on_so and line.product_id.image_128" t-att-src="image_data_uri(line.product_id.image_128)" t-att-alt="line.product_id.display_name" class="o_sale_report_product_image me-2 rounded object-fit-cover align-top"/>
+                          <div class="o_product_name_cell align-top">
+                            <span t-field="line.name">Bacon Burger</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td name="td_product_quantity" class="o_td_quantity text-end">
+                        <span t-field="line.product_uom_qty" class="text-nowrap">3</span>
+                        <span t-field="line.product_uom_id">units</span>
+                        <span t-if="line.product_uom_id != line.product_id.uom_id" class="text-muted small">
+                          <t t-set="quantity_in_product_uom" t-value="line.product_uom_id._compute_quantity(line.product_uom_qty, line.product_id.uom_id)"/>
+                          <br/>
+                          <span t-out="quantity_in_product_uom" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit'}"/>
+                          <span t-field="line.product_id.uom_id"/>
+                        </span>
+                      </td>
+                      <td name="td_product_priceunit" class="text-end text-nowrap">
+                        <span t-if="not collapse_prices and line.discount &lt; 0" t-out="(1 - line.discount / 100.0) * line.price_unit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;decimal_precision&quot;: &quot;Product Price&quot;}"/>
+                        <span t-elif="not collapse_prices" t-field="line.price_unit">
+                                        25.00
+                                    </span>
+                      </td>
+                      <td t-if="display_discount" name="td_product_discount" class="text-end">
+                        <t t-if="not collapse_prices">
+                          <!-- ! Always check collapse_prices separately; keep discount condition below for XPath -->
+                          <span t-if="line.discount &gt; 0" t-field="line.discount">-</span>
+                        </t>
+                      </td>
+                      <t t-set="taxes" t-value="', '.join(tax.tax_label for tax in line.tax_ids if tax.tax_label)"/>
+                      <td t-if="display_taxes" name="td_product_taxes" t-attf-class="text-end {{ 'text-nowrap' if len(taxes) &lt; 12 else '' }}">
+                        <span t-out="taxes">Tax 15%</span>
+                      </td>
+                      <td name="td_product_subtotal" class="text-end o_price_total">
+                        <t t-if="not line.is_downpayment and not collapse_prices">
+                          <span t-if="price_field == 'price_subtotal'" t-field="line.price_subtotal">
+                                            27.00
+                                        </span>
+                          <span t-else="" t-field="line.price_total">
+                                            27.00
+                                        </span>
+                        </t>
+                      </td>
+                    </tr>
+                  </t>
+                  <t t-else="">
+                    <!-- Displaying the section inner content, grouped by taxes -->
+                    <tr t-foreach="line._get_grouped_section_summary(display_taxes)" t-as="section_line" name="tr_section_group">
+                      <td name="td_section_group_name" t-att-style="padding_style">
+                        <span t-field="line.name">
+                                        Section Summary
+                                    </span>
+                      </td>
+                      <td name="td_section_group_quantity" class="text-end text-nowrap">
+                        <span>1.00 Units</span>
+                      </td>
+                      <td name="td_section_group_priceunit" class="text-end text-nowrap">
+                        <span t-if="show_section_total" name="price_subtotal_section_grouped" t-out="section_line['price_subtotal']" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        25.00
+                                    </span>
+                      </td>
+                      <td t-if="display_discount" name="td_section_group_discount">
+                        <!-- NOTE: not computed atm, but at least provides the API for it if needed in the future -->
+                        <t t-set="aggregated_discount" t-value="section_line.get('discount', 0)"/>
+                        <span t-if="aggregated_discount" t-out="aggregated_discount">-</span>
+                      </td>
+                      <td t-if="display_taxes" name="td_section_group_taxes" t-attf-class="text-end {{ 'text-nowrap' if len(section_line['tax_labels']) &lt; 10 else '' }}">
+                        <span t-out="', '.join(section_line['tax_labels'])">
+                                        Tax 15%
+                                    </span>
+                      </td>
+                      <td name="td_section_group_total" class="text-end o_price_total">
+                        <span t-if="show_section_total" t-out="section_line[price_field]" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}">
+                                        30.00
+                                    </span>
+                      </td>
+                    </tr>
+                  </t>
+                </t>
+              </tbody>
+            </table>
+            <div class="clearfix" name="so_total_summary">
+              <div id="total" class="row mt-n3" name="total">
+                <div>
+                  <table class="o_total_table table table-borderless ms-auto w-auto">
+                    <!-- Tax totals -->
+                    <t t-call="sale.document_tax_totals_copy_2_copy_1" tax_totals="doc.tax_totals" currency="doc.currency_id"/>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="oe_structure">
+              <br/>
+            </div>
+            <div t-if="not doc.signature or not doc.env.context.get('sale_include_signature')" class="oe_structure"/>
+            <div t-else="" class="mt-4 ml64 mr4" name="signature">
+              <div class="offset-8">
+                <strong>Signature</strong>
+              </div>
+              <div class="offset-8">
+                <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+              </div>
+              <div class="offset-8 text-center">
+                <span t-field="doc.signed_by">Oscar Morgan</span>
+              </div>
+            </div>
+            <div>
+              <span t-field="doc.note" t-attf-style="#{'text-align:justify;text-justify:inter-word;' if doc.company_id.terms_type != 'html' else ''}" name="order_note"/>
+              <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                <span t-field="doc.payment_term_id.note">The payment should also be transmitted with love</span>
+              </p>
+              <div class="oe_structure">
+                <br/>
+              </div>
+              <p t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)" id="fiscal_position_remark">
+                <strong>Fiscal Position Remark:</strong>
+                <span t-field="doc.fiscal_position_id.sudo().note">No further requirements for this payment</span>
+              </p>
+            </div>
+            <div class="oe_structure">
+              <br/>
+            </div>
+            <t t-set="base_address" t-value="doc.env['ir.config_parameter'].sudo().get_str('web.base.url')"/>
+            <t t-set="portal_url" t-value="base_address + '/my/orders/' + str(doc.id) + '#portal_connect_software_modal_btn'"/>
+            <div t-if="any(u._is_portal() for u in doc.partner_id.user_ids) and doc._get_edi_builders()" class="text-center"><a t-att-href="portal_url">Connect your software</a> with <t t-out="doc.company_id.name"/> to create quotes automatically.
+            </div>
+          </div>
+        </t>
+      </t>
+    </field>
+    <field name="key">sale.report_saleorder_document_copy_2_copy_1</field>
+    <field name="name">report_saleorder_document copy(2) copy(1)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="document_tax_totals__1b435d2b-f775-4e6d-b663-4e9f46c1f025" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <t t-name="sale.document_tax_totals_copy_2_copy_1">
+        <!--
+                Generic template to display tax totals in pdf reports.
+                Used by invoices, SO and PO.
+
+                ARGUMENTS:
+                - currency: The res.currency to use.
+                - tax_totals: dict in the form generated by account.move's _get_tax_totals.
+            -->
+        <t t-set="same_tax_base" t-value="tax_totals['same_tax_base']"/>
+        <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+          <tr t-if="subtotal['tax_groups']" class="o_subtotal">
+            <td>
+              <span t-out="subtotal['name']">Untaxed Amount</span>
+            </td>
+            <td class="text-end">
+              <span t-att-class="oe_subtotal_footer_separator" t-out="subtotal['base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">27.00</span>
+            </td>
+          </tr>
+          <t t-foreach="subtotal['tax_groups']" t-as="tax_group">
+            <tr class="o_taxes">
+              <t t-if="same_tax_base or tax_group['display_base_amount_currency'] is False">
+                <td style="max-width: 200px;">
+                  <span t-out="tax_group['group_name']">Tax 15%</span>
+                </td>
+                <td class="text-end o_price_total">
+                  <span class="text-nowrap" t-out="tax_group['tax_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">1.05</span>
+                </td>
+              </t>
+              <t t-else="">
+                <td>
+                  <span t-out="tax_group['group_name']">Tax 15%</span>
+                  <span> on </span>
+                  <span class="text-nowrap" t-out="tax_group['display_base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">27.00</span>
+                </td>
+                <td class="text-end o_price_total">
+                  <span class="text-nowrap" t-out="tax_group['tax_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">4.05</span>
+                </td>
+              </t>
+            </tr>
+          </t>
+        </t>
+        <tr t-if="'cash_rounding_base_amount_currency' in tax_totals">
+          <td>Rounding</td>
+          <td class="text-end">
+            <span t-out="tax_totals['cash_rounding_base_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">0</span>
+          </td>
+        </tr>
+        <!--Total amount with all taxes-->
+        <tr class="o_total">
+          <td>
+            <strong>Total</strong>
+          </td>
+          <td class="text-end">
+            <strong t-out="tax_totals['total_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">31.05</strong>
+          </td>
+        </tr>
+      </t>
+    </field>
+    <field name="key">sale.document_tax_totals_copy_2_copy_1</field>
+    <field name="name">document_tax_totals copy(2) copy(1)</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_sale_ord_b3cc1828-5e41-45ca-af6e-aabdd4188328" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//field[@name='state']" position="after">
+          <button string="ინვოისის და შეთავაზების გაგზავნა" type="action" name="647"/>
+        </xpath>
+        <xpath expr="/form//button[@id='quotation_send_primary']" position="attributes">
+          <attribute name="string">ინვოისის გაგზავნა</attribute>
+        </xpath>
+        <xpath expr="/form//button[@name='sale.action_report_saleorder']" position="attributes">
+          <attribute name="string">ამობეჭდვა</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='partner_id']" position="after">
+          <field name="x_studio_test"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="key">studio_customization.odoo_studio_sale_ord_b3cc1828-5e41-45ca-af6e-aabdd4188328</field>
+    <field name="mode">extension</field>
+    <field name="model">sale.order</field>
+    <field name="name">Odoo Studio: sale.order.form customization</field>
+    <field name="priority">200</field>
+    <field name="type">form</field>
+  </record>
+  <record id="odoo_studio_report_s_98387752-91d8-4ac0-b55d-b27c92b57a62" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-set='address']" position="after" meta-t-set="address">
+          <t t-set="address"/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[6]" position="replace" meta-t-if="not doc.signature or not doc.env.context.get('sale_include_signature')" meta-class="oe_structure"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//div[@name='signature']" position="replace" meta-t-else="" meta-class="mt-4 ml64 mr4" meta-name="signature"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[3]" position="replace" meta-class="oe_structure"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[4]" position="replace" meta-class="oe_structure"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[5]" position="replace" meta-class="oe_structure"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[5]" position="replace" meta-t-if="any(u._is_portal() for u in doc.partner_id.user_ids) and doc._get_edi_builders()" meta-class="text-center"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[@name='informations_reference']/strong" position="replace" mode="inner">ინვოისის ნომერი</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[@name='informations_date']/strong" position="replace" mode="inner" meta-t-if="is_proforma">გაცემის თარიღი</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[@name='informations_date']/strong[2]" position="replace" mode="inner" meta-t-elif="doc.state in ['draft', 'sent']">გაცემის თარიღი</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[@name='expiration_date']/strong" position="replace" mode="inner">მოქმედების ვადა</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[4]/div" position="replace" meta-t-if="doc.incoterm_location"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//div[@t-field='doc.incoterm.code']" position="replace" meta-t-else="" meta-t-field="doc.incoterm.code"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[4]/strong" position="replace">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//div[@t-field='doc.commitment_date']" position="replace" meta-t-field="doc.commitment_date" meta-t-options="{'widget': 'date'}"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[@name='delivery_date']/strong" position="replace">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//div[@t-field='doc.user_id']" position="replace" meta-t-field="doc.user_id"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[@id='informations']/div[6]/strong" position="replace">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//th[@name='th_description']" position="replace" mode="inner" meta-name="th_description" meta-class="text-start">პროდუქტი</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//th[@name='th_quantity']" position="replace" mode="inner" meta-name="th_quantity" meta-class="text-end text-nowrap">რაოდენობა</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//th[@name='th_priceunit']" position="replace" mode="inner" meta-name="th_priceunit" meta-class="text-end text-nowrap">ერთეულის ფასი დღგ-ს გარეშე</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/table/thead/tr/th[@name='th_taxes']/span" position="after">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/table/thead/tr/th[@name='th_taxes']/span" position="replace" mode="inner">დღგ</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/table/thead/tr/th[@name='th_subtotal']/span" position="after">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/table/thead/tr/th[@name='th_subtotal']/span" position="replace" mode="inner">ღირებულება დღგ-ს ჩატვლით</xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[4]/p" position="replace" meta-t-if="not is_html_empty(doc.payment_term_id.note)"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//span[@name='order_note']" position="replace" meta-t-field="doc.note" meta-t-attf-style="#{'text-align:justify;text-justify:inter-word;' if doc.company_id.terms_type != 'html' else ''}" meta-name="order_note"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[4]/div" position="after" meta-class="oe_structure">
+          <div class="oe_structure">
+            <img src="/web/image/691-eabb1dbf/98d1ea9e-f0f4-4983-be13-5bccf6f89c64%20%281%29.png" alt="" data-attachment-id="691" class="img img-fluid o_we_custom_image"/>
+          </div>
+          <div class="oe_structure">
+            <br/>
+          </div>
+          <div class="oe_structure">
+            <br/>
+          </div>
+          <div class="oe_structure">
+            <br/>
+          </div>
+          <div class="oe_structure">
+            <br/>
+          </div>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[4]/div" position="inside" meta-class="oe_structure">
+          <br/>
+        </xpath>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']//span[@t-field='doc.fiscal_position_id.sudo().note']" position="replace" meta-t-field="doc.fiscal_position_id.sudo().note"/>
+        <xpath expr="/t[@t-name='sale.report_saleorder_document']//t[@t-call='web.external_layout']/div/div[4]/p[@id='fiscal_position_remark']/strong" position="replace">
+          <br/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="sale.report_saleorder_document"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._sale.report_saleorder_document</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: report_saleorder_document report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+  <record id="odoo_studio_document_17cde50e-07c3-4b1c-9e17-9552d90fa03c" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/t[@t-name='sale.document_tax_totals']/tr" position="replace" meta-t-if="'cash_rounding_base_amount_currency' in tax_totals"/>
+        <xpath expr="/t[@t-name='sale.document_tax_totals']/t[2]/tr" position="replace" meta-t-if="subtotal['tax_groups']" meta-class="o_subtotal"/>
+        <xpath expr="/t[@t-name='sale.document_tax_totals']/t[2]/t/tr/t[2]/td[2]/span" position="replace" meta-class="text-nowrap" meta-t-out="tax_group['tax_amount_currency']" meta-t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"/>
+        <xpath expr="/t[@t-name='sale.document_tax_totals']/t[2]/t/tr/t[2]/td[2]" position="inside" meta-class="text-end o_price_total">​</xpath>
+        <xpath expr="/t[@t-name='sale.document_tax_totals']/tr/td[2]" position="replace" meta-class="text-end"/>
+        <xpath expr="/t[@t-name='sale.document_tax_totals']/tr/td" position="replace">
+          <td class="text-end">  ჯამი                            <strong t-out="tax_totals['total_amount_currency']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}">31.05</strong>
+    </td>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="sale.document_tax_totals"/>
+    <field name="key">web_studio.report_editor_customization_diff.view._sale.document_tax_totals</field>
+    <field name="mode">extension</field>
+    <field name="name">Odoo Studio: document_tax_totals report customization</field>
+    <field name="priority">9999999</field>
+    <field name="type">qweb</field>
+  </record>
+</odoo>

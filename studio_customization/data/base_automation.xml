@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="deduplication_e6cf099f-7478-4f1b-9052-2e48b5e7c53a" model="base.automation" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('execute_code_e1bfa5ca-f2ab-4c2d-b051-84e6e382147a')])]"/>
+    <field name="trigger">on_create</field>
+    <field name="name">Deduplication</field>
+  </record>
+  <record id="map_lead_custom_fiel_bb3d1b99-23c1-48f4-b8dc-f4e454be593d" model="base.automation" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('execute_code_2314b3d4-3aa5-450d-8319-8f9b65a0a062')])]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="filter_domain">["&amp;", ("partner_id", "!=", False), ("type", "=", "opportunity")]</field>
+    <field name="name">Map Lead Custom Fields to Contact on Conversion</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('crm.field_crm_lead__partner_id')])]"/>
+  </record>
+  <record id="currency_f612de38-4e6b-48cc-bccf-173fc0a1a432" model="base.automation" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('update_lead_a7e497b9-1872-4cb0-9d43-8c51850f7cfa'), ref('currency_yuan_60eb768c-eb33-49a0-9630-57bb3f0cf69a')])]"/>
+    <field name="trigger">on_create</field>
+    <field name="name">currency</field>
+  </record>
+  <record id="web_form_contact_us_ba7c1995-917c-4193-8cf3-ff24dd24638c" model="base.automation" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="trigger">on_webhook</field>
+    <field name="log_webhook_calls" eval="True"/>
+    <field name="name">web form-Contact US</field>
+    <field name="record_getter">model.create({     "name":         payload.get("name") or payload.get("company") or payload.get("phone") or "Website Lead",     "partner_name": payload.get("company"),     "phone":        payload.get("phone"),     "description":  payload.get("description"),     "type":         "lead", })</field>
+  </record>
+  <record id="test_for_facebook_d76c75ec-e02e-4fbe-b3e5-cd260e5e594c" model="base.automation" context="{'studio': True}">
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="trigger">on_webhook</field>
+    <field name="log_webhook_calls" eval="True"/>
+    <field name="name">Test for facebook</field>
+  </record>
+</odoo>

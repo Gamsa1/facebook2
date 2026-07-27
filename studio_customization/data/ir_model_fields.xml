@@ -1,0 +1,656 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="name_1_e6e70534-701d-481d-ab32-f6c8ae3deda8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Name</field>
+    <field name="model">x_1</field>
+    <field name="model_id" ref="1_080e10af-9be4-4103-b32d-edbc6bee5a99"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="translate">standard</field>
+  </record>
+  <record id="sequence_1_c3ea7f76-3b79-4f36-915c-7026598afda2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_1</field>
+    <field name="model_id" ref="1_080e10af-9be4-4103-b32d-edbc6bee5a99"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_many2one_lead_a5e4c73c-b4a7-4595-843f-4cb826830549" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Many2One</field>
+    <field name="group_expand" eval="True"/>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_1_id</field>
+    <field name="relation">x_1</field>
+  </record>
+  <record id="new_text_lead_c4bcbf89-6241-49df-8608-8a9ca278648a" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">X Studio Interest In Product</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_interest_in_product</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_monetary_lead_67efd28b-f7e3-4648-9528-7188c12958b2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შესყიდვის ფასი - $</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_monetary_field_4k3_1jovmptgs</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">company_currency</field>
+  </record>
+  <record id="new_selection_lead_8e17f60f-6ebc-4384-9a03-58185b910877" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Lost Reason</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_lost_reason</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Price', 'Price'), ('Competitor', 'Competitor'), ('No response', 'No response')]</field>
+  </record>
+  <record id="new_checkbox_lead_a479c3a2-62e2-4152-aced-b79db7c04b31" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Duplicate</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_duplicate</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_many2one_lead_2143a0a5-ed19-4456-a919-6ad5e0e92740" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Original Lead</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_original_lead</field>
+    <field name="relation">crm.lead</field>
+  </record>
+  <record id="new_text_product_c8a92c45-7a05-41b9-b049-4b63285fca67" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Product Category</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_product_category</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="description_brand_2146fe0c-523d-482f-ac63-c772ba867c43" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_brand</field>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate">standard</field>
+  </record>
+  <record id="active_brand_e6f94362-484a-433f-9f0c-8e06a3073cc4" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_brand</field>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="notes_brand_4de13e74-aeed-4359-b4b0-f446ecf47e60" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">html</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Notes</field>
+    <field name="model">x_brand</field>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">x_studio_notes</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="image_brand_062fbb19-cba0-4ceb-b817-a3c9aec3db25" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Image</field>
+    <field name="model">x_brand</field>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">x_studio_image</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="sequence_brand_2fece40b-1f50-409a-83a9-86c33cbaf3eb" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_brand</field>
+    <field name="model_id" ref="brand_af450069-1c1b-436b-afde-fc19d2fa9681"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_produc_5af8dda1-b27f-4c90-b2f9-7012373e5499" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Brand</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_brand</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('X', 'X')]</field>
+  </record>
+  <record id="new_text_product_a39579e3-c4ee-4436-93fa-35b9cf0cbdbe" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Brand</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_brand_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_05ea7e67-6cee-41f4-bb09-9b83bf29da19" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Specification</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_specification</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_fe247bc6-6126-49bb-8a66-1eede648f9ab" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Model</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_model</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_6e8e388a-2fe1-4aa5-ae86-61ea15110dff" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Brand</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_brand_2</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_ce990353-056e-4e9c-92cb-76a068373aa3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Model</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_model_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_1aad8add-4a67-4e41-835b-c4877c66cbcf" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Specification</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_specification_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_6fa3b006-7e2c-48c6-ae99-141303be95f6" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Product Category</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_product_category_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_lead_afde03f9-57d7-47c1-ba59-c01017472db8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">VAT/საიდენტიფიკაციო ნომერი</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_id_number</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_lead_ddd0e645-0917-4d45-8bad-bc69d0e9ae6f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შემოსავალი</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_company_income</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_lead_73ae7bf4-6a3f-431b-a9d2-8d3c100a370f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">ბრუნვა</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_turnover</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="sequence_crm_lead_li_b4e483b1-ba99-4f60-85a6-6dd9b29f53e7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_crm_lead_line_f594a</field>
+    <field name="model_id" ref="crm_lead_line_df90133d-dc44-49fe-b233-fd9101270ff4"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="description_crm_lead_8d1e4cb3-de1e-469c-8b1b-3136cbf058e9" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_crm_lead_line_f594a</field>
+    <field name="model_id" ref="crm_lead_line_df90133d-dc44-49fe-b233-fd9101270ff4"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate">standard</field>
+  </record>
+  <record id="crm_lead_line_0a4ff05b-d1a4-4516-9e7d-245f4748dbc5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">X Crm Lead</field>
+    <field name="model">x_crm_lead_line_f594a</field>
+    <field name="model_id" ref="crm_lead_line_df90133d-dc44-49fe-b233-fd9101270ff4"/>
+    <field name="name">x_crm_lead_id</field>
+    <field name="relation">crm.lead</field>
+  </record>
+  <record id="new_lines_lead_8e589743-7e7c-412a-8d09-5b4f359594a5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">პროდუქტების შესყიდვის ისტორია</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_one2many_field_7vm_1jq3nh96u</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_crm_lead_line_f594a</field>
+    <field name="relation_field">x_crm_lead_id</field>
+  </record>
+  <record id="new_checkbox_lead_904625a1-1f38-44b6-801b-7f2acb1ab168" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New CheckBox</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_boolean_field_7jg_1jq3nj6cn</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_lead_5abe5638-289c-4522-8e82-991570a10548" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">ლიზინგი</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_leasing</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Yes', 'Yes'), ('No', 'No')]</field>
+  </record>
+  <record id="new_text_lead_01654c1c-17a6-4227-9a72-f317ff3aa41f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">პირადი ნომერი</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_id</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_contact_1d36ffeb-41cb-418c-a31a-373cf7c129bf" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Director/founder</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_directorfounder</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_contact_2a5d1b84-f9bf-4b4e-9762-3c64c2da21ec" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">პირადი ნომერი</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_id_number</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_integer_contact_bb6aacdb-b3e7-47a6-a03b-6ce571d0f173" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Phone Number</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_phone_number</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_contac_a3da1f17-8cf0-443c-b9f6-3ec1be2c927d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">ლიზინგი</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_leasing</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Yes', 'Yes'), ('No', 'No')]</field>
+  </record>
+  <record id="new_selection_contac_370772a7-b90c-431f-8a62-d690122afee8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">კატეგორია</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_category</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('I', 'I'), ('II', 'II'), ('III', 'III'), ('IV', 'IV'), ('სდპ', 'სდპ')]</field>
+  </record>
+  <record id="new_text_contact_30a57a93-cf8d-4023-aa20-0c43d8617b05" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">ბრუნვა</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_annual_turnover</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_contact_b9901abb-7325-4447-a65c-ecf48c56dd6c" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შემოსავალი</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_annual_income</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_contact_4b55da1e-064e-4a2c-83ec-b25ed17705f2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">აქტივები</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_assets</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_contact_c97a45e4-8eb2-48af-bccc-0a0a8f0f3dae" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">ვალდებულებები</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_liabilities</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="sequence_res_partner_9da4f63e-0ad9-41bf-9c9a-37d7db9bbf12" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_res_partner_line_730c9</field>
+    <field name="model_id" ref="res_partner_line_454393f4-db59-4402-9198-8ec6473da85a"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="description_res_part_3ad5b9e8-1cae-494c-90ae-732565a081bf" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_res_partner_line_730c9</field>
+    <field name="model_id" ref="res_partner_line_454393f4-db59-4402-9198-8ec6473da85a"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate">standard</field>
+  </record>
+  <record id="res_partner_line_6674d364-0a44-44a5-b24b-95df78b76cad" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">X Res Partner</field>
+    <field name="model">x_res_partner_line_730c9</field>
+    <field name="model_id" ref="res_partner_line_454393f4-db59-4402-9198-8ec6473da85a"/>
+    <field name="name">x_res_partner_id</field>
+    <field name="relation">res.partner</field>
+  </record>
+  <record id="new_lines_contact_73e06590-db0c-4e74-bcde-57aa12422683" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">შესყიდული პროდუქტის ისტორია</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_purchased_product_history</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_res_partner_line_730c9</field>
+    <field name="relation_field">x_res_partner_id</field>
+  </record>
+  <record id="new_many2many_lead_29d6edf4-c35a-4190-8dcc-8098bf92b1fa" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2many</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Interest in Product</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_product</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">product.template</field>
+    <field name="relation_table">x_crm_lead_product_template_rel</field>
+  </record>
+  <record id="new_many2many_lead_ead60541-eea3-47a4-a270-ac9add8f7b7a" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2many</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">დაინტერესება პროდუქტში</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_interested_in_product</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">product.template</field>
+    <field name="relation_table">x_crm_lead_product_template_rel_1</field>
+  </record>
+  <record id="new_many2many_contac_14ba945b-fad0-4755-9391-ede6ebc4b3cf" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2many</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">დაინტერესება პროდუქტში</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_interested_in_product</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">product.template</field>
+    <field name="relation_table">x_product_template_res_partner_rel</field>
+  </record>
+  <record id="new_text_contact_7652b4a7-ba1b-4c00-be9d-c4fe9af1bff8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Test222</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_test222</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_lead_35794e8b-5478-401a-9d3c-9f568188e6e1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Company</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_company</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_lead_63fefeea-5787-4994-9e9c-df6200cf0191" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">კატეგორია</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_category</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('I', 'I'), ('II', 'II'), ('III', 'III'), ('IV', 'IV'), ('სდპ', 'სდპ')]</field>
+  </record>
+  <record id="new_text_lead_e72fe456-0be7-4eff-8095-ca9fd0306adc" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">აქტივები</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_assets</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_lead_b546c26e-3de8-4c69-9699-fd65b1321c00" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">ვალდებილებები</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_liabilities</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_product_9bc10fbd-dbc5-4d25-b10b-b40cc650f267" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Engine</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_engine</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_file_product_130a1367-7d8b-4745-a481-65a060ac5455" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Product File</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_product_file</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="filename_for_x_studi_da04775a-d704-459c-82a1-4c8de7c5ca39" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Filename for x_studio_binary_field_82a_1jq8errd8</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_studio_product_file_filename</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_monetary_lead_d46992aa-c4d0-41a2-831d-380e06284e70" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შესყიდვის ფასი - ₾</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_monetary_field_3t0_1jqlekjgu</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">x_studio_many2one_field_79q_1jqlen4su</field>
+  </record>
+  <record id="new_many2one_lead_12248953-a285-4948-bdb1-b25388e1d9dc" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Many2One</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_many2one_field_9nc_1jqlel4hr</field>
+    <field name="relation">crm.lead</field>
+  </record>
+  <record id="new_many2one_lead_bea1f33c-a5c6-47f4-bde7-86f7b92c7fe8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Gel</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_many2one_field_79q_1jqlen4su</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="new_monetary_lead_db69037f-5d3d-4f6e-abe0-53793fa63495" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შესყიდვის ფასი - ¥</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_monetary_field_713_1jqleqatd</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">x_studio_yuan</field>
+  </record>
+  <record id="new_many2one_lead_9264b775-a60b-40c0-969d-b1a74b67d1dd" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">yuan</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_yuan</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="new_monetary_lead_f57faa88-ba2c-408e-8da5-919e642cf274" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Monetary</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_monetary_field_2kg_1jqlf74lf</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">company_currency</field>
+  </record>
+  <record id="new_monetary_lead_cedba270-4f2c-48db-9815-b36a24f59672" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Monetary</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_monetary_field_6hj_1jqlg5cgt</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">company_currency</field>
+  </record>
+  <record id="new_monetary_contact_5edf80b4-5273-4e7a-bf68-4b78c6b78555" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შესყივდვის ფასი - $</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_monetary_field_e1_1jqlgm2sr</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">currency_id</field>
+  </record>
+  <record id="new_monetary_contact_2be4c58a-564b-4a3a-a0f4-5bce5c06c8b1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შესყიდვის ფასი - ₾</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_monetary_field_909_1jqlgo9rf</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">x_studio_gel</field>
+  </record>
+  <record id="new_monetary_contact_b8f3b806-f738-4a9b-97d7-b0c6b7b58791" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">შესყიდვის ფასი - ¥</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_monetary_field_4j3_1jqlgp1lv</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">x_studio_yuan</field>
+  </record>
+  <record id="new_many2one_contact_f0e5037b-6f43-42d9-aba4-872e81cda3ec" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Gel</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_gel</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="new_many2one_contact_f38ae210-4aac-4498-bfe6-ae52a68a3da8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Yuan</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_yuan</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="new_text_sales_order_db938061-1019-45d6-b745-821e146fd92c" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">test</field>
+    <field name="model">sale.order</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="name">x_studio_test</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+</odoo>

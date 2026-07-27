@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="brand_b6a24a60-8454-4013-841e-275842647afd" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">Brand</field>
+    <field name="res_model">x_brand</field>
+  </record>
+</odoo>
