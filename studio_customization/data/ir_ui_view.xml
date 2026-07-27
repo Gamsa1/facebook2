@@ -669,9 +669,6 @@
           <field name="x_studio_gel" invisible="True"/>
           <field name="x_studio_yuan" invisible="True"/>
         </xpath>
-        <xpath expr="/form/sheet/group/group[2]/field[@name='function']" position="attributes">
-          <attribute name="string">პოზიცია</attribute>
-        </xpath>
         <xpath expr="/form//field[@name='website']" position="attributes">
           <attribute name="string">ვებსაიტი</attribute>
         </xpath>
