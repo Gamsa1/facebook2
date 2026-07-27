@@ -38,16 +38,6 @@
     <field name="name">x_studio_interest_in_product</field>
     <field name="on_delete" eval="False"/>
   </record>
-  <record id="new_monetary_lead_67efd28b-f7e3-4648-9528-7188c12958b2" model="ir.model.fields" context="{'studio': True}">
-    <field name="ttype">monetary</field>
-    <field name="copied" eval="True"/>
-    <field name="field_description">შესყიდვის ფასი - $</field>
-    <field name="model">crm.lead</field>
-    <field name="model_id" ref="crm.model_crm_lead"/>
-    <field name="name">x_studio_monetary_field_4k3_1jovmptgs</field>
-    <field name="on_delete" eval="False"/>
-    <field name="currency_field">company_currency</field>
-  </record>
   <record id="new_selection_lead_8e17f60f-6ebc-4384-9a03-58185b910877" model="ir.model.fields" context="{'studio': True}">
     <field name="ttype">selection</field>
     <field name="copied" eval="True"/>

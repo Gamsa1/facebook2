@@ -8,7 +8,6 @@
         </xpath>
         <xpath expr="/list//field[@name='source_id']" position="after">
           <field optional="show" name="x_studio_interest_in_product"/>
-          <field optional="show" name="x_studio_monetary_field_4k3_1jovmptgs" string="Expected Revenue"/>
           <field name="company_currency"/>
           <field name="x_studio_company_income" optional="show"/>
           <field name="x_studio_turnover" optional="show"/>
@@ -89,7 +88,6 @@
           <attribute name="string">პოზიცია</attribute>
         </xpath>
         <xpath expr="/form//field[@name='tag_ids']" position="after">
-          <field name="x_studio_monetary_field_4k3_1jovmptgs" string="შესყიდვის ფასი - $"/>
           <field name="company_currency" invisible="True"/>
           <field name="x_studio_monetary_field_3t0_1jqlekjgu" string="შესყიდვის ფასი - ₾"/>
           <field name="x_studio_monetary_field_713_1jqleqatd" string="შესყიდვის ფასი - ¥"/>
