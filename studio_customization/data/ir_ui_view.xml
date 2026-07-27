@@ -661,9 +661,6 @@
         <xpath expr="/form/sheet/group/group/span[@name='address_name']/field[@name='type_address_label']" position="attributes">
           <attribute name="string">მისამართი</attribute>
         </xpath>
-        <xpath expr="/form//label[@for='vat']" position="attributes">
-          <attribute name="string">საიდენთიფიკაციო ნომერი</attribute>
-        </xpath>
         <xpath expr="/form//field[@name='category_id']" position="after">
           <field name="x_studio_monetary_field_e1_1jqlgm2sr" string="შესყივდვის ფასი - $"/>
           <field name="currency_id"/>
