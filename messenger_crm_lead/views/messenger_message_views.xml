@@ -9,6 +9,7 @@
             <list>
                 <field name="received_at"/>
                 <field name="source"/>
+                <field name="page_name"/>
                 <field name="sender_name"/>
                 <field name="message_text"/>
                 <field name="state"/>
@@ -53,6 +54,7 @@
                     <group>
                         <group string="Sender Info">
                             <field name="source"/>
+                            <field name="page_name"/>
                             <field name="sender_id"/>
                             <field name="received_at"/>
                         </group>
@@ -61,8 +63,8 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Message">
-                            <field name="message_text" readonly="1"
+                        <page string="Conversation">
+                            <field name="message_log" readonly="1"
                                    widget="text" nolabel="1"/>
                         </page>
                     </notebook>
@@ -79,6 +81,7 @@
             <search>
                 <field name="sender_name"/>
                 <field name="message_text"/>
+                <field name="page_name"/>
                 <filter string="New" name="new" domain="[('state','=','new')]"/>
                 <filter string="Converted" name="converted" domain="[('state','=','converted')]"/>
                 <filter string="Ignored" name="ignored" domain="[('state','=','ignored')]"/>
@@ -86,6 +89,7 @@
                 <filter string="Facebook Messenger" name="messenger" domain="[('source','=','messenger')]"/>
                 <filter string="Instagram DM" name="instagram" domain="[('source','=','instagram')]"/>
                 <filter string="Source" name="group_source" context="{'group_by':'source'}"/>
+                <filter string="Page" name="group_page" context="{'group_by':'page_name'}"/>
                 <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
                 <filter string="Date" name="group_date" context="{'group_by':'received_at:day'}"/>
             </search>

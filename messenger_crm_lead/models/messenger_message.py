@@ -22,7 +22,8 @@ class MessengerMessage(models.Model):
     sender_name = fields.Char(string='Sender Name', default='Unknown')
 
     # ── Message content ───────────────────────────────────────────────────────
-    message_text = fields.Text(string='Message', readonly=True)
+    message_text = fields.Text(string='Latest Message', readonly=True)
+    message_log = fields.Text(string='Conversation Log', readonly=True)
     received_at = fields.Datetime(string='Received At', readonly=True,
                                   default=fields.Datetime.now)
 
@@ -34,7 +35,12 @@ class MessengerMessage(models.Model):
         ('converted', 'Converted to Lead'),
         ('ignored', 'Ignored'),
     ], string='Status', default='new', required=True)
+
+    # ── Page ──────────────────────────────────────────────────────────────────
     messenger_page_id = fields.Many2one('messenger.page', string='Page', readonly=True)
+    page_name = fields.Char(related='messenger_page_id.name', string='Page Name',
+                            store=True, readonly=True)
+
     # ── Actions ───────────────────────────────────────────────────────────────
 
     def action_convert_to_lead(self):
@@ -49,9 +55,10 @@ class MessengerMessage(models.Model):
             'contact_name': self.sender_name,
             'description': (
                 f'Source: {dict(self._fields["source"].selection)[self.source]}\n'
+                f'Page: {self.page_name or "N/A"}\n'
                 f'Sender ID: {self.sender_id}\n'
                 f'Received: {self.received_at}\n\n'
-                f'Message:\n{self.message_text}'
+                f'Conversation:\n{self.message_log or self.message_text}'
             ),
             'type': 'lead',
         }
