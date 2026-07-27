@@ -46,35 +46,6 @@
         <xpath expr="/form//button[@name='action_set_won_rainbowman']" position="attributes">
           <attribute name="string">მოხდა შესყიდვა</attribute>
         </xpath>
-        <xpath expr="/form/sheet/group[2]" position="after">
-          <group name="studio_group_54t_1jq40ckvd">
-            <group name="studio_group_54t_left" string="Company information">
-              <field name="x_studio_category" string="კატეგორია"/>
-              <field name="x_studio_id_number" string="VAT/საიდენტიფიკაციო ნომერი"/>
-              <field name="x_studio_company_income" string="შემოსავალი"/>
-              <field name="x_studio_turnover" string="ბრუნვა"/>
-              <field name="x_studio_assets" string="აქტივები"/>
-              <field name="x_studio_liabilities" string="ვალდებილებები"/>
-              <field name="x_studio_leasing" string="ლიზინგი"/>
-            </group>
-            <group name="studio_group_54t_right">
-              <field name="x_studio_one2many_field_7vm_1jq3nh96u" string="პროდუქტების შესყიდვის ისტორია"/>
-              <field name="x_studio_interested_in_product" string="დაინტერესება პროდუქტში"/>
-            </group>
-          </group>
-        </xpath>
-        <xpath expr="/form//field[@name='x_studio_category']" position="before">
-          <xpath expr="/form//field[@name='partner_name']" position="move"/>
-        </xpath>
-        <xpath expr="/form/sheet/group[2]/group[@name='lead_partner']/div[2]" position="after">
-          <field name="x_studio_id" string="პირადი ნომერი"/>
-          <field name="x_studio_duplicate"/>
-          <field name="x_studio_original_lead"/>
-          <xpath expr="/form//field[@name='function']" position="move"/>
-        </xpath>
-        <xpath expr="/form/sheet/group[2]/group[@name='lead_partner']/field[@name='partner_id']" position="attributes">
-          <attribute name="string">დაკავშირებული კონტაქტი</attribute>
-        </xpath>
         <xpath expr="/form//label[@for='email_from']" position="attributes">
           <attribute name="string">იმეილი</attribute>
         </xpath>
@@ -93,9 +64,6 @@
         </xpath>
         <xpath expr="/form//field[@name='user_id']" position="attributes">
           <attribute name="string">გაყიდვების მენეჯერი</attribute>
-        </xpath>
-        <xpath expr="/form/sheet/group[2]/group[2]/field[@name='priority']" position="attributes">
-          <attribute name="string">პრიორიტეტი</attribute>
         </xpath>
         <xpath expr="/form//field[@name='partner_name']" position="attributes">
           <attribute name="string">კომპანიის დასახელება</attribute>
