@@ -76,7 +76,16 @@ class CrmLead(models.Model):
             'facebook_is_organic': lead['is_organic'],
             'name': self.get_opportunity_name(vals, lead, form),
             'description': "\n".join(notes),
-            ...
+            'team_id': form.team_id and form.team_id.id,
+            'campaign_id': form.campaign_id and form.campaign_id.id or
+                           self.get_campaign(lead),
+            'source_id': form.source_id and form.source_id.id,
+            'medium_id': form.medium_id and form.medium_id.id or
+                         self.get_ad(lead),
+            'user_id': form.team_id and form.team_id.user_id and form.team_id.user_id.id or False,
+            'facebook_adset_id': self.get_adset(lead),
+            'facebook_form_id': form.id,
+            'facebook_date_create': lead['created_time'].split('+')[0].replace('T', ' ')
         })
         return vals
 
