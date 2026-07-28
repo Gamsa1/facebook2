@@ -67,31 +67,24 @@ class CrmLead(models.Model):
             vals['contact_name'] = lead['full_name']
         if not vals.get('phone') and lead.get('phone_number'):
             vals['phone'] = lead['phone_number']
+
+        # Put the form name in the description instead of the lead name
+        notes.insert(0, 'Form: %s' % form.name)
+
         vals.update({
             'id_facebook_lead': lead['id'],
             'facebook_is_organic': lead['is_organic'],
             'name': self.get_opportunity_name(vals, lead, form),
             'description': "\n".join(notes),
-            'team_id': form.team_id and form.team_id.id,
-            'campaign_id': form.campaign_id and form.campaign_id.id or
-            self.get_campaign(lead),
-            'source_id': form.source_id and form.source_id.id,
-            'medium_id': form.medium_id and form.medium_id.id or
-            self.get_ad(lead),
-            'user_id': form.team_id and form.team_id.user_id and form.team_id.user_id.id or False,
-            'facebook_adset_id': self.get_adset(lead),
-            'facebook_form_id': form.id,
-            'facebook_date_create': lead['created_time'].split('+')[0].replace('T', ' ')
+            ...
         })
         return vals
 
-    def lead_creation(self, lead, form):
-        vals = self._prepare_lead_creation(lead, form)
-        return self.create(vals)
-
     def get_opportunity_name(self, vals, lead, form):
         if not vals.get('name'):
-            vals['name'] = '%s - %s' % (form.name, lead['id'])
+            # Fall back to full_name/phone instead of the form name
+            vals['name'] = (lead.get('full_name') or lead.get('phone_number')
+                            or 'Facebook Lead - %s' % lead['id'])
         return vals['name']
 
     def get_fields_from_data(self, lead, form):
