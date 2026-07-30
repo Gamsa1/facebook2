@@ -7,18 +7,17 @@
         <field name="model">messenger.message</field>
         <field name="arch" type="xml">
             <list>
-                <field name="received_at"/>
+                <field name="received_at" string="Last Activity"/>
                 <field name="source"/>
                 <field name="page_name"/>
-                <field name="sender_name"/>
-                <field name="is_from_page" string="From Page" widget="boolean_toggle" optional="show"/>
-                <field name="message_text"/>
+                <field name="sender_name" string="Customer"/>
+                <field name="is_from_page" string="Last Msg From Page" widget="boolean_toggle" optional="show"/>
+                <field name="message_text" string="Latest Message"/>
                 <field name="state"/>
                 <field name="lead_id"/>
                 <button name="action_convert_to_lead"
                         string="Convert to Lead"
-                        type="object"
-                        invisible="is_from_page"/>
+                        type="object"/>
             </list>
         </field>
     </record>
@@ -28,13 +27,13 @@
         <field name="name">messenger.message.view.form</field>
         <field name="model">messenger.message</field>
         <field name="arch" type="xml">
-            <form string="Incoming Message">
+            <form string="Conversation">
                 <header>
                     <button name="action_convert_to_lead"
                             string="Convert to Lead"
                             type="object"
                             class="btn-primary"
-                            invisible="state != 'new' or is_from_page"/>
+                            invisible="state != 'new'"/>
                     <button name="action_ignore"
                             string="Ignore"
                             type="object"
@@ -66,9 +65,9 @@
                     </group>
                     <notebook>
                         <page string="Conversation">
-                            <field name="thread_message_ids" nolabel="1" readonly="1">
+                            <field name="line_ids" nolabel="1" readonly="1">
                                 <list>
-                                    <field name="received_at"/>
+                                    <field name="sent_at"/>
                                     <field name="is_from_page" string="From Page"/>
                                     <field name="sender_name"/>
                                     <field name="message_text"/>
@@ -87,10 +86,9 @@
         <field name="model">messenger.message</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sender_name"/>
+                <field name="sender_name" string="Customer"/>
                 <field name="message_text"/>
                 <field name="page_name"/>
-                <field name="conversation_key"/>
                 <filter string="New" name="new" domain="[('state','=','new')]"/>
                 <filter string="Converted" name="converted" domain="[('state','=','converted')]"/>
                 <filter string="Ignored" name="ignored" domain="[('state','=','ignored')]"/>
@@ -98,11 +96,9 @@
                 <filter string="Facebook Messenger" name="messenger" domain="[('source','=','messenger')]"/>
                 <filter string="Instagram DM" name="instagram" domain="[('source','=','instagram')]"/>
                 <separator/>
-                <filter string="From Customer" name="from_customer" domain="[('is_from_page','=',False)]"/>
-                <filter string="From Page" name="from_page" domain="[('is_from_page','=',True)]"/>
+                <filter string="Awaiting Your Reply" name="awaiting_reply" domain="[('is_from_page','=',False)]"/>
                 <filter string="Source" name="group_source" context="{'group_by':'source'}"/>
                 <filter string="Page" name="group_page" context="{'group_by':'page_name'}"/>
-                <filter string="Conversation" name="group_conversation" context="{'group_by':'conversation_key'}"/>
                 <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
                 <filter string="Date" name="group_date" context="{'group_by':'received_at:day'}"/>
             </search>
@@ -118,11 +114,11 @@
         <field name="context">{'search_default_new': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No messages yet!
+                No conversations yet!
             </p>
             <p>
-                When someone sends you a message on Facebook Messenger or Instagram,
-                it will appear here. Click <strong>Convert to Lead</strong> to add it to CRM.
+                When someone messages you on Facebook Messenger or Instagram,
+                the conversation appears here. Click <strong>Convert to Lead</strong> to add it to CRM.
             </p>
         </field>
     </record>
