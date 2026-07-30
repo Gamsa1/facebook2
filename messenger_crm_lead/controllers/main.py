@@ -2,7 +2,7 @@ import json
 import logging
 import requests
 
-from odoo import http
+from odoo import http, fields
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class MessengerWebhook(http.Controller):
 
             if not page_record:
                 _logger.warning('Received message for unconfigured Page ID: %s', fb_page_id)
-                continue  # skip entries from Pages we haven't set up
+                continue
 
             page_token = page_record.page_access_token
 
@@ -77,42 +77,63 @@ class MessengerWebhook(http.Controller):
                 recipient_psid = messaging.get('recipient', {}).get('id', '')
                 message_obj = messaging.get('message', {})
                 text = message_obj.get('text', '')
+                fb_mid = message_obj.get('mid', '')
                 is_echo = bool(message_obj.get('is_echo'))
 
                 if not text:
                     continue
 
-                # The customer is whichever side of the event is NOT the Page —
-                # works whether or not is_echo is present in the payload.
+                # Skip duplicate deliveries — Meta retries webhooks on failure/timeout.
+                if fb_mid and env['messenger.message.line'].search_count([('fb_mid', '=', fb_mid)]):
+                    _logger.info('Skipping duplicate webhook delivery for mid %s', fb_mid)
+                    continue
+
                 if sender_psid == fb_page_id:
                     customer_psid = recipient_psid
                 else:
                     customer_psid = sender_psid
 
                 conversation_key = f'{fb_page_id}_{customer_psid}'
+                is_from_page = is_echo or sender_psid == fb_page_id
 
-                # Don't waste a Graph API call looking up "name" for our own Page
-                # when this event is our own reply being echoed back.
-                if is_echo or sender_psid == fb_page_id:
-                    sender_name = page_record.name or 'Page'
-                else:
-                    sender_name = self._get_sender_name(customer_psid, page_token, source)
+                conversation = env['messenger.message'].search(
+                    [('conversation_key', '=', conversation_key)], limit=1
+                )
 
-                msg = env['messenger.message'].create({
-                    'source': source,
-                    'sender_id': sender_psid,
-                    'recipient_id': recipient_psid,
-                    'customer_psid': customer_psid,
-                    'conversation_key': conversation_key,
-                    'sender_name': sender_name,
+                if not conversation:
+                    # Brand new customer — look up their name once, on first contact.
+                    customer_name = (page_record.name or 'Page') if is_from_page \
+                        else self._get_sender_name(customer_psid, page_token, source)
+
+                    conversation = env['messenger.message'].create({
+                        'source': source,
+                        'customer_psid': customer_psid,
+                        'conversation_key': conversation_key,
+                        'sender_name': customer_name,
+                        'message_text': text,
+                        'is_from_page': is_from_page,
+                        'state': 'new',
+                        'messenger_page_id': page_record.id,
+                    })
+
+                line_sender_name = (page_record.name or 'Page') if is_from_page else conversation.sender_name
+
+                env['messenger.message.line'].create({
+                    'message_id': conversation.id,
+                    'sender_name': line_sender_name,
                     'message_text': text,
-                    'is_from_page': is_echo or sender_psid == fb_page_id,
-                    'state': 'new',
-                    'messenger_page_id': page_record.id,
+                    'is_from_page': is_from_page,
+                    'fb_mid': fb_mid,
                 })
 
-                if auto_lead and not msg.is_from_page:
-                    msg.action_convert_to_lead()
+                conversation.write({
+                    'message_text': text,
+                    'is_from_page': is_from_page,
+                    'received_at': fields.Datetime.now(),
+                })
+
+                if auto_lead and not is_from_page and conversation.state == 'new':
+                    conversation.action_convert_to_lead()
 
     def _get_sender_name(self, psid, page_token, source):
         if not page_token or not psid:
