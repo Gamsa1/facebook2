@@ -10,8 +10,7 @@ class CrmLead(models.Model):
                                           compute='_compute_messenger_line_ids',
                                           string='Conversation Messages')
 
-    @api.depends('id')
+    @api.depends('messenger_conversation_id.line_ids')
     def _compute_messenger_line_ids(self):
         for lead in self:
-            convo = self.env['messenger.message'].search([('lead_id', '=', lead.id)], limit=1)
-            lead.messenger_line_ids = convo.line_ids.ids if convo else False
+            lead.messenger_line_ids = lead.messenger_conversation_id.line_ids.ids
