@@ -2,7 +2,7 @@ import json
 import logging
 import requests
 
-from odoo import http, fields
+from odoo import http, fields, SUPERUSER_ID
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
@@ -58,7 +58,7 @@ class MessengerWebhook(http.Controller):
     # ── Helpers ────────────────────────────────────────────────────────────────
 
     def _process_entries(self, entries, source):
-        env = request.env(su=True)
+        env = request.env(user=SUPERUSER_ID)
         ICP = env['ir.config_parameter']
         auto_lead = str(ICP.get_param('messenger_crm_lead.auto_lead', 'False')).lower() in ('1', 'true', 'yes')
 
