@@ -106,6 +106,7 @@ class MessengerWebhook(http.Controller):
                         else self._get_sender_name(customer_psid, page_token, source)
 
                     default_assignee_id = ICP.get_param('messenger_crm_lead.default_assignee_id')
+                    assignee_id = int(default_assignee_id) if default_assignee_id else False
 
                     conversation = env['messenger.message'].create({
                         'source': source,
@@ -116,11 +117,15 @@ class MessengerWebhook(http.Controller):
                         'is_from_page': is_from_page,
                         'state': 'new',
                         'messenger_page_id': page_record.id,
-                        'user_id': int(default_assignee_id) if default_assignee_id else False,
                     })
 
-                    if conversation.user_id:
-                        conversation.message_subscribe(partner_ids=conversation.user_id.partner_id.ids)
+                    if assignee_id:
+                        assignee = env['res.users'].browse(assignee_id)
+                        # Subscribe BEFORE writing, so the tracked change below
+                        # actually notifies them — write() is what triggers
+                        # tracking messages, create() does not.
+                        conversation.message_subscribe(partner_ids=assignee.partner_id.ids)
+                        conversation.write({'user_id': assignee_id})
 
                 line_sender_name = (page_record.name or 'Page') if is_from_page else conversation.sender_name
 
