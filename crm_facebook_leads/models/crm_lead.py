@@ -89,6 +89,9 @@ class CrmLead(models.Model):
         })
         return vals
 
+    def lead_creation(self, lead, form):
+        vals = self._prepare_lead_creation(lead, form)
+        return self.create(vals)
     def get_opportunity_name(self, vals, lead, form):
         if not vals.get('name'):
             # Fall back to full_name/phone instead of the form name
