@@ -74,24 +74,44 @@ class MessengerWebhook(http.Controller):
 
             for messaging in entry.get('messaging', []):
                 sender_psid = messaging.get('sender', {}).get('id', '')
+                recipient_psid = messaging.get('recipient', {}).get('id', '')
                 message_obj = messaging.get('message', {})
                 text = message_obj.get('text', '')
+                is_echo = bool(message_obj.get('is_echo'))
 
                 if not text:
                     continue
 
-                sender_name = self._get_sender_name(sender_psid, page_token, source)
+                # The customer is whichever side of the event is NOT the Page —
+                # works whether or not is_echo is present in the payload.
+                if sender_psid == fb_page_id:
+                    customer_psid = recipient_psid
+                else:
+                    customer_psid = sender_psid
+
+                conversation_key = f'{fb_page_id}_{customer_psid}'
+
+                # Don't waste a Graph API call looking up "name" for our own Page
+                # when this event is our own reply being echoed back.
+                if is_echo or sender_psid == fb_page_id:
+                    sender_name = page_record.name or 'Page'
+                else:
+                    sender_name = self._get_sender_name(customer_psid, page_token, source)
 
                 msg = env['messenger.message'].create({
                     'source': source,
                     'sender_id': sender_psid,
+                    'recipient_id': recipient_psid,
+                    'customer_psid': customer_psid,
+                    'conversation_key': conversation_key,
                     'sender_name': sender_name,
                     'message_text': text,
+                    'is_from_page': is_echo or sender_psid == fb_page_id,
                     'state': 'new',
                     'messenger_page_id': page_record.id,
                 })
 
-                if auto_lead:
+                if auto_lead and not msg.is_from_page:
                     msg.action_convert_to_lead()
 
     def _get_sender_name(self, psid, page_token, source):

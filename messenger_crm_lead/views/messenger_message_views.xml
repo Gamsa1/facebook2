@@ -11,12 +11,14 @@
                 <field name="source"/>
                 <field name="page_name"/>
                 <field name="sender_name"/>
+                <field name="is_from_page" string="From Page" widget="boolean_toggle" optional="show"/>
                 <field name="message_text"/>
                 <field name="state"/>
                 <field name="lead_id"/>
                 <button name="action_convert_to_lead"
                         string="Convert to Lead"
-                        type="object"/>
+                        type="object"
+                        invisible="is_from_page"/>
             </list>
         </field>
     </record>
@@ -32,7 +34,7 @@
                             string="Convert to Lead"
                             type="object"
                             class="btn-primary"
-                            invisible="state != 'new'"/>
+                            invisible="state != 'new' or is_from_page"/>
                     <button name="action_ignore"
                             string="Ignore"
                             type="object"
@@ -56,6 +58,9 @@
                             <field name="source"/>
                             <field name="page_name"/>
                             <field name="sender_id"/>
+                            <field name="recipient_id"/>
+                            <field name="customer_psid"/>
+                            <field name="is_from_page"/>
                             <field name="received_at"/>
                         </group>
                         <group string="CRM">
@@ -64,8 +69,14 @@
                     </group>
                     <notebook>
                         <page string="Conversation">
-                            <field name="message_log" readonly="1"
-                                   widget="text" nolabel="1"/>
+                            <field name="thread_message_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="received_at"/>
+                                    <field name="is_from_page" string="From Page"/>
+                                    <field name="sender_name"/>
+                                    <field name="message_text"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -82,14 +93,19 @@
                 <field name="sender_name"/>
                 <field name="message_text"/>
                 <field name="page_name"/>
+                <field name="conversation_key"/>
                 <filter string="New" name="new" domain="[('state','=','new')]"/>
                 <filter string="Converted" name="converted" domain="[('state','=','converted')]"/>
                 <filter string="Ignored" name="ignored" domain="[('state','=','ignored')]"/>
                 <separator/>
                 <filter string="Facebook Messenger" name="messenger" domain="[('source','=','messenger')]"/>
                 <filter string="Instagram DM" name="instagram" domain="[('source','=','instagram')]"/>
+                <separator/>
+                <filter string="From Customer" name="from_customer" domain="[('is_from_page','=',False)]"/>
+                <filter string="From Page" name="from_page" domain="[('is_from_page','=',True)]"/>
                 <filter string="Source" name="group_source" context="{'group_by':'source'}"/>
                 <filter string="Page" name="group_page" context="{'group_by':'page_name'}"/>
+                <filter string="Conversation" name="group_conversation" context="{'group_by':'conversation_key'}"/>
                 <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
                 <filter string="Date" name="group_date" context="{'group_by':'received_at:day'}"/>
             </search>

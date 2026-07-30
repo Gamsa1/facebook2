@@ -19,7 +19,33 @@ class MessengerMessage(models.Model):
 
     # ── Sender info ───────────────────────────────────────────────────────────
     sender_id = fields.Char(string='Sender ID (PSID)', readonly=True)
+    recipient_id = fields.Char(string='Recipient ID (PSID)', readonly=True)
     sender_name = fields.Char(string='Sender Name', default='Unknown')
+
+    # ── Conversation matching ────────────────────────────────────────────────
+    customer_psid = fields.Char(string='Customer PSID', readonly=True, index=True,
+                                help='The non-Page participant in this conversation, '
+                                     'regardless of whether this record is an incoming '
+                                     'message or an outgoing reply.')
+    conversation_key = fields.Char(string='Conversation Key', readonly=True, index=True,
+                                   help='page_id + customer_psid — used to group all '
+                                        'messages/replies belonging to the same thread.')
+    is_from_page = fields.Boolean(string='Sent by Page', readonly=True, default=False)
+
+    thread_message_ids = fields.Many2many(
+        'messenger.message', compute='_compute_thread_message_ids',
+        string='Thread Messages',
+        help='All messages/replies sharing this record\'s conversation_key, oldest first.')
+
+    @api.depends('conversation_key')
+    def _compute_thread_message_ids(self):
+        for rec in self:
+            if rec.conversation_key:
+                rec.thread_message_ids = self.search([
+                    ('conversation_key', '=', rec.conversation_key)
+                ], order='received_at asc')
+            else:
+                rec.thread_message_ids = False
 
     # ── Message content ───────────────────────────────────────────────────────
     message_text = fields.Text(string='Latest Message', readonly=True)
@@ -46,6 +72,10 @@ class MessengerMessage(models.Model):
     def action_convert_to_lead(self):
         """1-Click: Convert this incoming message to a CRM Lead."""
         self.ensure_one()
+        if self.is_from_page:
+            raise UserError(_("This message was sent by the Page, not a customer — "
+                               "it can't be converted to a lead."))
+
         if self.state == 'converted' and self.lead_id:
             # Already converted → open existing lead
             return self._open_lead()
@@ -56,7 +86,7 @@ class MessengerMessage(models.Model):
             'description': (
                 f'Source: {dict(self._fields["source"].selection)[self.source]}\n'
                 f'Page: {self.page_name or "N/A"}\n'
-                f'Sender ID: {self.sender_id}\n'
+                f'Customer PSID: {self.customer_psid or self.sender_id}\n'
                 f'Received: {self.received_at}\n\n'
                 f'Conversation:\n{self.message_log or self.message_text}'
             ),
@@ -87,7 +117,7 @@ class MessengerMessage(models.Model):
     # ── Batch action ──────────────────────────────────────────────────────────
 
     def action_convert_all_to_leads(self):
-        """Batch: convert all selected new messages to leads."""
-        for msg in self.filtered(lambda m: m.state == 'new'):
+        """Batch: convert all selected new messages to leads (skips Page's own replies)."""
+        for msg in self.filtered(lambda m: m.state == 'new' and not m.is_from_page):
             msg.action_convert_to_lead()
         return True
