@@ -2,134 +2,69 @@
 <odoo>
 
     <!-- ── List View ─────────────────────────────────────────────────────── -->
-    <record id="messenger_message_view_list" model="ir.ui.view">
-        <field name="name">messenger.message.view.list</field>
-        <field name="model">messenger.message</field>
+    <record id="messenger_page_view_list" model="ir.ui.view">
+        <field name="name">messenger.page.view.list</field>
+        <field name="model">messenger.page</field>
         <field name="arch" type="xml">
             <list>
-                <field name="received_at" string="Last Activity"/>
-                <field name="source"/>
-                <field name="page_name"/>
-                <field name="sender_name" string="Customer"/>
-                <field name="is_from_page" string="Awaiting Your Reply" invert="1" widget="boolean_toggle" optional="show"/>
-                <field name="message_text" string="Latest Message"/>
-                <field name="state"/>
-                <field name="lead_id"/>
-                <button name="action_convert_to_lead"
-                        string="Convert to Lead"
-                        type="object"/>
+                <field name="name"/>
+                <field name="page_id"/>
+                <field name="active"/>
             </list>
         </field>
     </record>
 
     <!-- ── Form View ─────────────────────────────────────────────────────── -->
-    <record id="messenger_message_view_form" model="ir.ui.view">
-        <field name="name">messenger.message.view.form</field>
-        <field name="model">messenger.message</field>
+    <record id="messenger_page_view_form" model="ir.ui.view">
+        <field name="name">messenger.page.view.form</field>
+        <field name="model">messenger.page</field>
         <field name="arch" type="xml">
-            <form string="Conversation">
-                <header>
-                    <button name="action_convert_to_lead"
-                            string="Convert to Lead"
-                            type="object"
-                            class="btn-primary"
-                            invisible="state != 'new'"/>
-                    <button name="action_ignore"
-                            string="Ignore"
-                            type="object"
-                            class="btn-secondary"
-                            invisible="state != 'new'"/>
-                    <button name="action_reset"
-                            string="Reset to New"
-                            type="object"
-                            invisible="state == 'new'"/>
-                    <field name="state" widget="statusbar"
-                           statusbar_visible="new,converted,ignored"/>
-                </header>
+            <form string="Facebook/Instagram Page">
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="sender_name" readonly="1"/>
+                            <field name="name" placeholder="e.g. Asp Construction"/>
                         </h1>
                     </div>
                     <group>
-                        <group string="Customer Info">
-                            <field name="source"/>
-                            <field name="page_name"/>
-                            <field name="customer_psid"/>
-                            <field name="received_at"/>
-                        </group>
-                        <group string="CRM">
-                            <field name="lead_id"/>
-                        </group>
+                        <field name="page_id" string="Facebook Page ID"/>
+                        <field name="page_access_token" password="True"/>
+                        <field name="active"/>
                     </group>
-                    <notebook>
-                        <page string="Conversation">
-                            <field name="line_ids" nolabel="1" readonly="1">
-                                <list>
-                                    <field name="sent_at"/>
-                                    <field name="is_from_page" string="From Page"/>
-                                    <field name="sender_name"/>
-                                    <field name="message_text"/>
-                                </list>
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
     <!-- ── Search View ───────────────────────────────────────────────────── -->
-    <record id="messenger_message_view_search" model="ir.ui.view">
-        <field name="name">messenger.message.view.search</field>
-        <field name="model">messenger.message</field>
+    <record id="messenger_page_view_search" model="ir.ui.view">
+        <field name="name">messenger.page.view.search</field>
+        <field name="model">messenger.page</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sender_name" string="Customer"/>
-                <field name="message_text"/>
-                <field name="page_name"/>
-                <filter string="New" name="new" domain="[('state','=','new')]"/>
-                <filter string="Converted" name="converted" domain="[('state','=','converted')]"/>
-                <filter string="Ignored" name="ignored" domain="[('state','=','ignored')]"/>
-                <separator/>
-                <filter string="Facebook Messenger" name="messenger" domain="[('source','=','messenger')]"/>
-                <filter string="Instagram DM" name="instagram" domain="[('source','=','instagram')]"/>
-                <separator/>
-                <filter string="Awaiting Your Reply" name="awaiting_reply" domain="[('is_from_page','=',False)]"/>
-                <filter string="Source" name="group_source" context="{'group_by':'source'}"/>
-                <filter string="Page" name="group_page" context="{'group_by':'page_name'}"/>
-                <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
-                <filter string="Date" name="group_date" context="{'group_by':'received_at:day'}"/>
+                <field name="name"/>
+                <field name="page_id"/>
+                <filter string="Active" name="active" domain="[('active','=',True)]"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
             </search>
         </field>
     </record>
 
     <!-- ── Action ────────────────────────────────────────────────────────── -->
-    <record id="messenger_message_action" model="ir.actions.act_window">
-        <field name="name">Social Inbox</field>
-        <field name="res_model">messenger.message</field>
+    <record id="messenger_page_action" model="ir.actions.act_window">
+        <field name="name">Messenger Pages</field>
+        <field name="res_model">messenger.page</field>
         <field name="view_mode">list,form</field>
-        <field name="search_view_id" ref="messenger_message_view_search"/>
-        <field name="context">{'search_default_new': 1}</field>
+        <field name="search_view_id" ref="messenger_page_view_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No conversations yet!
+                No Pages configured yet!
             </p>
             <p>
-                When someone messages you on Facebook Messenger or Instagram,
-                the conversation appears here. Click <strong>Convert to Lead</strong> to add it to CRM.
+                Add a Facebook Page here with its Page ID and Access Token to start
+                receiving Messenger conversations.
             </p>
         </field>
-    </record>
-
-    <!-- ── Server action for batch convert ───────────────────────────────── -->
-    <record id="messenger_action_convert_batch" model="ir.actions.server">
-        <field name="name">Convert to Lead</field>
-        <field name="model_id" ref="messenger_crm_lead.model_messenger_message"/>
-        <field name="binding_model_id" ref="messenger_crm_lead.model_messenger_message"/>
-        <field name="state">code</field>
-        <field name="code">records.action_convert_all_to_leads()</field>
     </record>
 
 </odoo>
