@@ -143,6 +143,18 @@ class MessengerWebhook(http.Controller):
                     'received_at': fields.Datetime.now(),
                 })
 
+                # Ping the assignee on every new customer message — not just on
+                # first contact — so they know there's something to reply to.
+                # Skip when the message is the Page's own reply (is_from_page),
+                # since the assignee doesn't need to be notified of their own team's message.
+                if conversation.user_id and not is_from_page:
+                    conversation.message_subscribe(partner_ids=conversation.user_id.partner_id.ids)
+                    conversation.message_post(
+                        body=f'New message from {conversation.sender_name}: {text}',
+                        partner_ids=conversation.user_id.partner_id.ids,
+                        subtype_xmlid='mail.mt_comment',
+                    )
+
                 if auto_lead and not is_from_page and conversation.state == 'new':
                     conversation.action_convert_to_lead()
 
