@@ -54,13 +54,10 @@
                         </h1>
                     </div>
                     <group>
-                        <group string="Sender Info">
+                        <group string="Customer Info">
                             <field name="source"/>
                             <field name="page_name"/>
-                            <field name="sender_id"/>
-                            <field name="recipient_id"/>
                             <field name="customer_psid"/>
-                            <field name="is_from_page"/>
                             <field name="received_at"/>
                         </group>
                         <group string="CRM">
