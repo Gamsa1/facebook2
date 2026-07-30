@@ -11,6 +11,7 @@
                 <field name="source"/>
                 <field name="page_name"/>
                 <field name="sender_name" string="Customer"/>
+                <field name="user_id" string="Assigned To" optional="show"/>
                 <field name="is_from_page" string="Last Msg From Page" widget="boolean_toggle" optional="show"/>
                 <field name="message_text" string="Latest Message"/>
                 <field name="state"/>
@@ -61,6 +62,7 @@
                         </group>
                         <group string="CRM">
                             <field name="lead_id"/>
+                            <field name="user_id" string="Assigned To"/>
                         </group>
                     </group>
                     <notebook>
@@ -76,6 +78,7 @@
                         </page>
                     </notebook>
                 </sheet>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -101,6 +104,7 @@
                 <filter string="Page" name="group_page" context="{'group_by':'page_name'}"/>
                 <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
                 <filter string="Date" name="group_date" context="{'group_by':'received_at:day'}"/>
+                <filter string="Assigned To" name="group_assignee" context="{'group_by':'user_id'}"/>
             </search>
         </field>
     </record>

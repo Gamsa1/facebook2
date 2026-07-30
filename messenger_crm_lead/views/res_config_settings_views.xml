@@ -20,6 +20,10 @@
                                  help="When ON, every new incoming message automatically becomes a CRM Lead. When OFF, you convert manually with 1 click.">
                             <field name="messenger_auto_lead"/>
                         </setting>
+                        <setting string="Default Conversation Assignee"
+                                 help="New conversations are automatically assigned to this user and they'll be notified, just like a Lead assignment.">
+                            <field name="messenger_default_assignee_id"/>
+                        </setting>
                         <setting string="Webhook URL" help="Copy this URL and paste it in Meta Developer Console → Webhooks.">
                             <div class="o_setting_box_content">
                                 <code>/messenger/webhook</code>

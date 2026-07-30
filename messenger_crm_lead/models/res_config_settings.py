@@ -15,3 +15,10 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='messenger_crm_lead.auto_lead',
         help='If enabled, a CRM Lead is created immediately when a new message arrives.',
     )
+
+    messenger_default_assignee_id = fields.Many2one(
+        'res.users',
+        string='Default Conversation Assignee',
+        config_parameter='messenger_crm_lead.default_assignee_id',
+        help='New Messenger/Instagram conversations are automatically assigned to this user.',
+    )

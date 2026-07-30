@@ -7,6 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class MessengerMessage(models.Model):
     _name = 'messenger.message'
+    _inherit = ['mail.thread']
     _description = 'Messenger / Instagram Conversation'
     _order = 'received_at desc'
     _rec_name = 'sender_name'
@@ -57,6 +58,8 @@ class MessengerMessage(models.Model):
     messenger_page_id = fields.Many2one('messenger.page', string='Page', readonly=True)
     page_name = fields.Char(related='messenger_page_id.name', string='Page Name',
                             store=True, readonly=True)
+    # ── Assignment ────────────────────────────────────────────────────────────
+    user_id = fields.Many2one('res.users', string='Assigned To', tracking=True)
 
     # ── Actions ───────────────────────────────────────────────────────────────
 
