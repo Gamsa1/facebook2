@@ -51,7 +51,7 @@
     </record>
 
     <!-- ── Action ────────────────────────────────────────────────────────── -->
-    <record id="messenger_page_action" model="ir.actions.act_window">
+    <record id="action_messenger_page" model="ir.actions.act_window">
         <field name="name">Messenger Pages</field>
         <field name="res_model">messenger.page</field>
         <field name="view_mode">list,form</field>
