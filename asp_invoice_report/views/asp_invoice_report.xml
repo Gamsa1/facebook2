@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         REPORT ACTION — makes this selectable from the invoice's
+         Print menu, alongside the existing "Invoice PDF" etc.
+         ============================================================ -->
+    <record id="action_report_asp_invoice" model="ir.actions.report">
+        <field name="name">ASP Invoice (Custom)</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">asp_invoice_report.report_asp_invoice_document</field>
+        <field name="report_file">asp_invoice_report.report_asp_invoice_document</field>
+        <field name="print_report_name">'Invoice - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- ============================================================
+         QWEB TEMPLATE — the actual layout
+         ============================================================ -->
+    <template id="report_asp_invoice_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <!-- external_layout automatically includes the
+                         company logo + basic header, matching your
+                         "logo should stay the same" requirement -->
+                    <div class="page">
+
+                        <h2 style="text-align:center;">ინვოისი № <span t-field="o.name"/></h2>
+
+                        <!-- ===== მიმღები (Recipient) — stays as-is ===== -->
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>მიმღები</strong><br/>
+                                <span t-field="o.partner_id.name"/><br/>
+                                <span>ს/კ <span t-field="o.partner_id.vat"/></span><br/>
+                                <span t-field="o.partner_id.contact_address"/><br/>
+                                <span>ტელ: <span t-field="o.partner_id.phone"/></span>
+                            </div>
+
+                            <!-- ===== Date / Term / Validity ===== -->
+                            <div class="col-6">
+                                <strong>თარიღი:</strong> <span t-field="o.invoice_date"/><br/>
+                                <strong>ინვოისის ნომერი:</strong> <span t-field="o.name"/><br/>
+                                <strong>ვადა:</strong> <span t-field="o.invoice_payment_term_id.name"/><br/>
+                                <!-- PLACEHOLDER — swap in your real Validity Date field -->
+                                <strong>მოქმედების ვადა:</strong> <span t-field="o.x_studio_VALIDITY_DATE"/>
+                            </div>
+                        </div>
+
+                        <!-- ===== გადამხდელი (Payer) — stays as-is, mapped to a Contact field ===== -->
+                        <div class="mb32">
+                            <strong>გადამხდელი</strong><br/>
+                            <!-- PLACEHOLDER — swap in your real Payer Contact field -->
+                            <span t-field="o.x_studio_PAYER_CONTACT.name"/><br/>
+                            <span>ს.კ <span t-field="o.x_studio_PAYER_CONTACT.vat"/></span><br/>
+                            <span>ტელ: <span t-field="o.x_studio_PAYER_CONTACT.phone"/></span>
+                        </div>
+
+                        <!-- ===== Product lines — auto-filled from product master data ===== -->
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>დასახელება</th>
+                                    <th>საზომი ერთეული</th>
+                                    <th>რაოდენობა</th>
+                                    <th>ერთეულის ფასი დღგ-ს გარეშე</th>
+                                    <th>სულ ღირებულება დღგ-ს გარეშე</th>
+                                    <th>სულ ღირებულება დღგ-ს ჩათვლით</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.invoice_line_ids" t-as="line">
+                                    <t t-if="not line.display_type">
+                                        <tr>
+                                            <td><span t-esc="line_index + 1"/></td>
+                                            <td><span t-field="line.name"/></td>
+                                            <td><span t-field="line.product_uom_id.name"/></td>
+                                            <td><span t-field="line.quantity"/></td>
+                                            <td><span t-field="line.price_unit"/></td>
+                                            <td><span t-field="line.price_subtotal"/></td>
+                                            <td><span t-field="line.price_total"/></td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5"><strong>სულ</strong></td>
+                                    <td><span t-field="o.amount_untaxed"/></td>
+                                    <td><span t-field="o.amount_total"/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!--
+                            SKIPPED PER CLIENT INSTRUCTION (matches the
+                            screenshot marked for removal):
+                              - მიწოდების ადგილი (delivery place)
+                              - ჩარიცხვა გადახდის დღეს... (bank-rate note)
+                              - Payment installment schedule (I–VII, X marks)
+                        -->
+
+                        <!-- ===== Static footer — always present ===== -->
+                        <div class="mt64" style="font-size:11px;">
+                            <p>შპს ასპ-გრუპი &#160; ს/კ: 406217721 &#160; ოფისი: ქ.თბილისი, კახეთის გზატკეცილი N69 &#160; ტელ: +995 322 10 22 01</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>მიმღების ბანკი: სს "საქართველოს ბანკი"<br/>
+                                    ბანკის კოდი: BAGAGE22<br/>
+                                    ა/ა GE02BG0000000100752055</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>მიმღების ბანკი: სს "თიბისი ბანკი"<br/>
+                                    ბანკის კოდი: TBCBGE22<br/>
+                                    ა/ა GE63TB7756536020100003</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
