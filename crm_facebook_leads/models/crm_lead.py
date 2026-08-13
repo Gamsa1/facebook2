@@ -71,6 +71,11 @@ class CrmLead(models.Model):
         # Put the form name in the description instead of the lead name
         notes.insert(0, 'Form: %s' % form.name)
 
+        # Tag every Facebook lead with "Facebook Lead Form"
+        fb_tag = self.env['crm.tag'].search([('name', '=', 'Facebook Lead Form')], limit=1)
+        if not fb_tag:
+            fb_tag = self.env['crm.tag'].create({'name': 'Facebook Lead Form'})
+
         vals.update({
             'id_facebook_lead': lead['id'],
             'facebook_is_organic': lead['is_organic'],
@@ -85,7 +90,8 @@ class CrmLead(models.Model):
             'user_id': form.team_id and form.team_id.user_id and form.team_id.user_id.id or False,
             'facebook_adset_id': self.get_adset(lead),
             'facebook_form_id': form.id,
-            'facebook_date_create': lead['created_time'].split('+')[0].replace('T', ' ')
+            'facebook_date_create': lead['created_time'].split('+')[0].replace('T', ' '),
+            'tag_ids': [(4, fb_tag.id)],
         })
         return vals
 
