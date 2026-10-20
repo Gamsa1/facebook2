@@ -105,6 +105,25 @@ class CrmLead(models.Model):
             vals['name'] = form.name or 'Facebook Lead - %s' % lead['id']
         return vals['name']
 
+    def _create_customer(self, with_parent=None):
+        """Always create ONE person contact - never a company record.
+        The lead's company name is stored as text on the contact."""
+        # Odoo asked to attach the new contact to a specific parent: keep standard behaviour
+        if with_parent:
+            return super()._create_customer(with_parent=with_parent)
+
+        Partner = self.env['res.partner']
+
+        # Name for the person: Contact Name -> Company Name -> Odoo's default
+        name = self.contact_name or self.partner_name
+        if not name:
+            return super()._create_customer()  # no names at all: Odoo creates a single person
+
+        vals = self._prepare_customer_values(name, is_company=False)
+        if self.partner_name:
+            vals['company_name'] = self.partner_name
+        return Partner.create(vals)
+
     def get_fields_from_data(self, lead, form):
         vals, notes = {}, []
         form_mapping = form.mappings.filtered("odoo_field_id").mapped('facebook_field')
