@@ -98,11 +98,11 @@ class CrmLead(models.Model):
     def lead_creation(self, lead, form):
         vals = self._prepare_lead_creation(lead, form)
         return self.create(vals)
+
     def get_opportunity_name(self, vals, lead, form):
         if not vals.get('name'):
-            # Fall back to full_name/phone instead of the form name
-            vals['name'] = (lead.get('full_name') or lead.get('phone_number')
-                            or 'Facebook Lead - %s' % lead['id'])
+            # Use the Facebook form name as the lead title
+            vals['name'] = form.name or 'Facebook Lead - %s' % lead['id']
         return vals['name']
 
     def get_fields_from_data(self, lead, form):
